@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<html lang="ko">
 
-  </body>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="bgcolor">
+    <div class="container mb-0 mx-1 center">
+      <h1 class="text-white ">YoriLab</h1>
+      <div class="wrapper">
+        <div class="igpos">
+          <img src="images/mainPage.png" class="rounded-pill shadow" alt="recipe">
+        </div>
+        <div class="singup">
+          <button type="button" class="btn btn-success">회원가입</button>
+        </div>
+        <div class="login">
+          <button type="button" class="btn btn-success">로그인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
+<style>
+  .h1{
+    margin-left: 12em;
+  }
+  .bgcolor {
+    width: 100%;
+    height: 100vh;
+    background: rgba(248, 246, 231, 1);
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    overflow: auto;
+  }
+  .wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  }
+  .igpos{
+    grid-column-start: 1;
+
+        grid-column-end: 3;
+
+  }
+  .signup{
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
+  .login{
+    grid-column-start: 2;
+    grid-column-end: 4;
+
+  }
+
+
+</style>
