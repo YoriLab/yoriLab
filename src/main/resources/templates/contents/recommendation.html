@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+
+    <div layout:fragment="content">
+        <div>
+            <!-- 헤딩 -->
+            <div class="fw-bold h4">
+                <p>메뉴 고민 그만 해요</p>
+                <p>저희가 추천해줄게요</p>
+            </div>
+
+            <!-- 일 수 선택 -->
+            <div class="d-flex flex-row align-items-center justify-content-center">
+                <div class="fw-semibold me-5">일 수 선택</div>
+                <input class="btn border" type="number" value="7"/>
+            </div>
+
+            <!-- 추천 리스트 날짜, 요리 시간별 -->
+            <div>
+                <div class="mb-5"
+                        th:each="recommByDay : ${recommendationFullList}">
+                    <div class="mb-2 fw-semibold"
+                            th:text="${recommByDay.day} + '일차 추천 요리'"></div>
+                    <!-- n일차 추천 요리 (시간별) -->
+                    <div>
+                        <div class="row flex-row flex-nowrap overflow-auto mb-2"
+                             th:each="recommByWhen: ${recommByDay.recommendationByWhenList}">
+                            <!-- 추천 요리 이미지와 이름 -->
+                            <div class="col-3"
+                                    th:each="recomm : ${recommByWhen.recommendationList}">
+                                <img th:src="@{${recomm.food.imgUrl}}" alt="추천 요리 이미지" class="rounded w-100">
+                                <div th:text="${recomm.food.name}" class="text-center"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</html>
