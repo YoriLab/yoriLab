@@ -19,7 +19,7 @@ public class indexController {
 
     @GetMapping("/")
     public String index(Model model) {
-        return "contents/index";
+        return "index";
     }
 
 
