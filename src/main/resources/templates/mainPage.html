@@ -1,41 +1,35 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
+<html lang="ko"><head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Inter&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <title>YoriLab</title>
 </head>
 
-<body class="bgcolor">
+<body>
+<div class="bgcolor">
+  <div class="container mb-0 mx-1 center">
+    <h1 class="text-white ">YoriLab</h1>
+    <div class="singup" style="float : right">
+      <button type="button" class="btn btn-success">회원가입</button>
+    </div>
+    <div class="login" style="float : right;margin-right: 15px;">
+      <button type="button" class="btn btn-success">로그인</button>
+    </div>
+    <div class="wrapper">
+      <div class="igpos">
+        <img src="../img/mainPage.png" class="rounded-pill shadow" alt="recipe">
+      </div>
 
-  <h1 class="ml-sm-5 text-white ">YoriLab</h1>
-  <table>
-    <tr>
-      <td rowspan="2">
-        <img src="images/mainPage.png" class="rounded-pill shadow position-relative" alt="recipe" ></p>
-      </td>
-      <td width="300px" valign="bottom">
-        <button type="button" class="btn btn-success btn-lg float-end">Signup</button>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">
-        <button type="button" class="btn btn-success btn-lg float-end">Signin</button>
-      </td>
-    </tr>
-  </table>
-</body>
 
-</html>
+    </div>
+  </div>
+</div>
+
+
+
 <style>
-  .ml-sm-5 {
-    margin-left: 32px;
-    margin-top: 30px;
+  .h1{
+    margin-left: 12em;
   }
-  .img{
-    position="relative"
-  }
-
   .bgcolor {
     width: 100%;
     height: 100vh;
@@ -46,4 +40,28 @@
     left: 0px;
     overflow: auto;
   }
+  .wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  }
+  .igpos{
+    grid-column-start: 1;
+
+        grid-column-end: 3;
+
+  }
+  .signup{
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
+  .login{
+    grid-column-start: 2;
+    grid-column-end: 4;
+
+  }
+
+
 </style>
+</body></html>
