@@ -22,6 +22,15 @@ public class indexController {
         return "index";
     }
 
+    @GetMapping("/main")
+    public String mainPage(Model model) {
+        return "mainPage";
+    }
+
+    @GetMapping("/signup")
+    public String signUp(Model model) {
+        return "Signup";
+    }
 
     @GetMapping("/recommendation")
     public String recommendation(Model model) {

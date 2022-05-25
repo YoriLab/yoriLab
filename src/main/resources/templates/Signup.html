@@ -1,11 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
 
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <title>YoriLab</title>
-  <style media="screen">
+<div layout:fragment="content">
+    <div class="ContainerSignUp">
+        <div class="signupContainer col-6">
+            <div class="box col-12">
+                <h1 class="col">Sign up</h1>
+                <input type="email" class="col" placeholder="Email"/>
+                <input type="password" class="col" placeholder="비밀번호"/>
+                <input type="password" class="col" placeholder="비밀번호 확인"/>
+                <input type="text" class="col" placeholder="이름"/>
+                <input type="text" class="col" placeholder="나이"/>
+
+                <div class="row">
+                    <div class="col-2">선호하는 요리</div>
+                    <div class="form-check form-check-inline col-2">
+                        <label  class="checkbox-inline">
+                            <input class="form-check-label col-1" type="checkbox" id="inlineCheckbox1">한식
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline col-2">
+                        <label for="seller" class="checkbox-inline col-1">
+                            <input class="form-check-label" type="checkbox" id="inlineCheckbox2">양식
+                        </label>
+                    </div>
+                </div>
+
+                <label for="buyer" class="checkbox-inline">
+                    <input type="checkbox" id="buyer">직업
+                </label>
+
+
+                <button class="col">Sign</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+</html>
+
+<style media="screen">
     body {
       padding: 0;
       margin: 0;
@@ -14,12 +50,6 @@
     .ContainerSignUp {
       position: relative;
       background: blue;
-    }
-
-    .ContainerHeaderBG {
-      width: 100%;
-      height: 200px;
-      background: rgba(242, 248, 231, 1);
     }
 
     .signupContainer {
@@ -57,9 +87,6 @@
       border-radius: 20px;
       margin-bottom: 20px;
       color: #000;
-    }
-    .rowdiv{
-
     }
 
     .box input:focus,
@@ -107,45 +134,7 @@
       margin: 2px 0 0;
       align-self: flex-start;
     }
-  </style>
-</head>
-
-<body>
-  <div class="ContainerSignUp">
-    <div class="ContainerHeaderBG"></div>
-    <div class="signupContainer col-6">
-      <div class="box col-12">
-        <h1 class="col">Sign up</h1>
-        <input type="email" class="col" placeholder="Email" />
-        <input type="password" class="col" placeholder="비밀번호" />
-        <input type="password" class="col" placeholder="비밀번호 확인" />
-        <input type="text" class="col" placeholder="이름" />
-        <input type="text" class="col" placeholder="나이" />
-
-        <div class="row">
-          <div class="col-2">선호하는 요리</div>
-          <div class="form-check form-check-inline col-2">
-            <label for="seller" class="checkbox-inline">
-                <input class="form-check-label col-1" type="checkbox" id="inlineCheckbox1">한식
-              </label>
-          </div>
-          <div class="form-check form-check-inline col-2">
-            <label for="seller" class="checkbox-inline col-1">
-                <input class="form-check-label" type="checkbox" id="inlineCheckbox2">양식
-              </label>
-          </div>
-        </div>
-
-        <label for="buyer" class="checkbox-inline">
-          <input type="checkbox" id="buyer">직업
-        </label>
 
 
-        <button class="col">Sign</button>
-      </div>
 
-    </div>
-  </div>
-</body>
-
-</html>
+</style>
