@@ -17,12 +17,30 @@ import java.util.Random;
 @Controller
 public class indexController {
 
+    /* 인덱스 페이지 */
     @GetMapping("/")
     public String index(Model model) {
         return "index";
     }
 
+    @GetMapping("/main")
+    public String mainPage(Model model) {
+        return "mainPage";
+    }
 
+    @GetMapping("/signup")
+    public String signUp(Model model) {
+        return "Signup";
+    }
+
+    /* 영수증 페이지 */
+    @GetMapping("/receipt")
+    public String receipt(Model model) {
+        return "/";
+    }
+
+
+    /* 추천 페이지 */
     @GetMapping("/recommendation")
     public String recommendation(Model model) {
         List<RecommendationByDay> recommendationFullList = new ArrayList<>();

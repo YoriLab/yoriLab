@@ -1,67 +1,46 @@
-<html lang="ko"><head>
-  <meta charset="utf-8">
-  <link href="https://fonts.googleapis.com/css?family=Inter&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-</head>
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
 
-<body>
-<div class="bgcolor">
-  <div class="container mb-0 mx-1 center">
-    <h1 class="text-white ">YoriLab</h1>
-    <div class="singup" style="float : right">
-      <button type="button" class="btn btn-success">회원가입</button>
-    </div>
-    <div class="login" style="float : right;margin-right: 15px;">
-      <button type="button" class="btn btn-success">로그인</button>
-    </div>
-    <div class="wrapper">
-      <div class="igpos">
-        <img src="../img/mainPage.png" class="rounded-pill shadow" alt="recipe">
-      </div>
+<div layout:fragment="content">
+    <div>
+        <h1><mark class="text-white">YoriLab</mark></h1>
+        <img th:src="@{/img/mainPage.png}" class="rounded-pill shadow position-relative" alt="recipe"><br><br>
 
-
+        <div class="box col-12">
+            <input type="ID" class="float-start col-3" placeholder="Email ID"/>
+            <input type="password" class="float-start col-3" placeholder="Password"/>
+            <button type="button" class="float-end btn btn-success btn-lg">회원가입</button>
+            <button type="button" class="float-end btn btn-light btn-lg">로그인</button>
+        </div>
     </div>
-  </div>
+
 </div>
-
-
-
+</html>
 <style>
-  .h1{
-    margin-left: 12em;
+  .box input{
+      float: right;
+      font-family: 'Poppins', sans-serif;
+      display: block;
+      margin: 0px auto;
+      padding: 5px 20px;
+      text-align: left;
+      background: #F8F8F8;
+      color: #fff;
+      border: 0;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      color: #000;
   }
-  .bgcolor {
-    width: 100%;
-    height: 100vh;
-    background: rgba(248, 246, 231, 1);
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    overflow: auto;
+  .box button {
+      border: 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      margin: 0px auto;
+      padding: 5px 20px;
+      display: block;
+      cursor: pointer;
+      border-radius: 20px;
   }
-  .wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
-  }
-  .igpos{
-    grid-column-start: 1;
-
-        grid-column-end: 3;
-
-  }
-  .signup{
-    grid-column-start: 2;
-    grid-column-end: 4;
-  }
-  .login{
-    grid-column-start: 2;
-    grid-column-end: 4;
-
-  }
-
-
 </style>
-</body></html>
