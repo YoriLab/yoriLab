@@ -43,6 +43,10 @@ public class indexController {
     public String recipeRecommend(Model model) {
         return "recipeRecommend2";
     }
+    @GetMapping("/select")
+    public String select(Model model) {
+        return "selectIngred";
+    }
     /* 추천 페이지 */
     @GetMapping("/recommendation")
     public String recommendation(Model model) {

@@ -3,52 +3,99 @@
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{layouts/default}">
 <head>
-    <meta charset="UTF-8">
+
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet"/>
-    <link href="./css/selectIngred.css" rel="stylesheet"/>
+    <link th:href="@{css/selectIngred.css}" rel="stylesheet"/>
     <title>Document</title></head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <body>
-<div class="v162_328">
-    <div class="v169_453"></div>
-    <div class="name"></div>
-    <div class="v169_465"></div>
-    <span class="v169_466">돼지고기</span><span class="v169_472">소고기</span><span class="v176_354">소세지</span><span
-        class="v176_355">계란</span><span class="v169_467">닭고기</span><span class="v169_476">고등어</span><span
-        class="v171_304">빵</span><span class="v171_307">두부</span><span class="v171_313">밥</span><span class="v171_317">김치</span><span
-        class="v176_344">옥수수</span><span class="v176_345">매실</span><span class="v176_346">복숭아</span><span
-        class="v176_353">당근</span><span class="v176_364">콩나물</span><span class="v175_341">감자</span><span
-        class="v176_347">토마토</span><span class="v176_349">사과</span><span class="v176_350">배</span><span
-        class="v176_348">딸기</span><span class="v169_479">오징어</span><span class="v169_486">갈치</span><span
-        class="v169_468">육류</span><span class="v169_473">해산물</span><span class="v169_495">곡물</span><span
-        class="v171_314">채소</span>
-    <div class="v169_481"></div>
-    <div class="v169_483"></div>
-    <div class="v169_485"></div>
-    <div class="v169_488"></div>
-    <span class="v169_489">연어</span><span class="v177_880">새우</span><span
-        class="v174_338">파스타</span><span class="v176_358">국수</span><span class="v176_361">라면</span>
-    <div class="v169_491"></div>
-    <div class="v169_494"></div>
-    <div class="v171_306"></div>
-    <div class="v171_312"></div>
-    <div class="v171_316"></div>
-    <div class="v171_319"></div>
-    <div class="v171_321"></div>
-    <div class="v171_323"></div>
-    <div class="v171_325"></div>
-    <div class="v171_327"></div>
-    <div class="v171_329"></div>
-    <div class="v171_331"></div>
-    <div class="v171_335"></div>
-    <div class="v171_337"></div>
-    <div class="v174_340"></div>
-    <div class="v176_343"></div>
-    <div class="v176_352"></div>
-    <div class="v176_357"></div>
-    <div class="v176_360"></div>
-    <div class="v176_366"></div>
-    <div class="v169_471"></div>
-    <div class="v177_879"></div>
+<div layout:fragment="content" class="pb-5">
+    <div class="row flex-row flex-nowrap overflow-auto mb-2"
+    >
+        재료 선택
+    </div>
+<div class="row flex-row flex-nowrap overflow-auto mb-2"
+     >
+    <!-- 추천 요리 이미지와 이름 -->
+    <div class="col-3">
+        <img class = "food" th:src="@{img/beef.png}" alt="소고기" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+        <span th:style = "${'margin : 100px;'}">소고기</span>
+    </div>
+    <div class="col-3">
+    <img class = "food" th:src="@{img/fork.png}" alt="돼지고기" th:style = "${'height : 150px;'}" class="rounded w-100">
+        <span th:style = "${'margin : 100px;'}">돼지고기</span>
+    </div>
+    <div class="col-3">
+        <img class = "food" th:src="@{img/chicken.png}" alt="닭고기" th:style = "${'height : 150px;'}" class="rounded w-100">
+        <span th:style = "${'margin : 100px;'}">닭고기</span>
+    </div>
+
 </div>
+    <div class="row flex-row flex-nowrap overflow-auto mb-2" th:style = "${'margin-top: 50px;'}"
+    >
+        <div class="col-3">
+            <img class = "food" th:src="@{img/rice.png}" alt="밥" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+            <span th:style = "${'margin : 100px;'}">밥</span>
+        </div>
+        <div class="col-3">
+            <img class = "food" th:src="@{img/noodle.png}" alt="소면" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+            <span th:style = "${'margin : 100px;'}">소면</span>
+        </div>
+        <div class="col-3">
+        <img class = "food" th:src="@{img/pasta.png}" alt="파스타" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+            <span th:style = "${'margin : 100px;'}">파스타</span>
+        </div>
+        <div class="col-3">
+            <img class = "food" th:src="@{img/bread.png}" alt="빵" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+            <span th:style = "${'margin : 100px;'}">빵</span>
+        </div>
+    </div>
+    <div class="row flex-row flex-nowrap overflow-auto mb-2" th:style = "${'margin-top: 50px;'}"
+    >
+        <div class="col-3">
+            <img class = "food" th:src="@{img/galchi.png}" alt="갈치" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+            <span th:style = "${'margin : 100px;'}">갈치</span>
+        </div>
+        <div class="col-3">
+            <img class = "food" th:src="@{img/octopus.png}" alt="문어" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+            <span th:style = "${'margin : 100px;'}">문어</span>
+        </div>
+        <div class="col-3">
+            <img class = "food" th:src="@{img/shrimp.png}" alt="새우" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+            <span th:style = "${'margin : 100px;'}">새우</span>
+        </div>
+
+    </div>
+    <div class="row flex-row flex-nowrap overflow-auto mb-2" th:style = "${'margin-top: 50px;'}">
+        <div class="col-3">
+            <img  class = "food" th:src="@{img/potaeto.png}" alt="감자" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+            <span th:style = "${'margin : 100px;'}">감자</span>
+        </div>
+        <div class="col-3">
+            <img  class = "food" th:src="@{img/carrot.png}" alt="당근" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+            <span th:style = "${'margin : 100px;'}">당근</span>
+        </div>
+        <div class="col-3">
+            <img  class = "food" th:src="@{img/corn.png}" alt="옥수수" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+            <span th:style = "${'margin : 100px;'}">옥수수</span>
+        </div>
+    </div>
+
+    <button id = "selectBut" th:style = "${'margin: 0 auto;'}">선택 완료</button>
+    <script type="text/javascript">
+
+document.getElementById("selectBut").onclick = function() {
+alert("선택");
+}
+$.
+document.
+
+</script>
+
+</div>
+
 </body>
+
+
 </html>

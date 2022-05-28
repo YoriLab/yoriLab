@@ -12,11 +12,9 @@
         </div>
 
         <div class="d-flex flex-row align-items-center justify-content-center my-4">
-            <div class="fw-semibold me-5">일 수 선택</div>
-            <input class="btn border" type="number" value="7"/>
         </div>
 
-        <div class = "mb-5">
+        <div class = "row flex-row flex-nowrap overflow-auto mb-2">
             <div th:style = "${'margin : 50px'}">아침</div>
             <div class="mb-2 fw-semibold"> <img th:src = "@{img/butadong.png}" th:style = "${'width : 60px;'}"></div>
             <!-- n일차 추천 요리 (시간별) -->
@@ -24,12 +22,24 @@
             <div th:style = "${'margin : 50px'}">점심</div>
             <div th:style = "${'margin : 50px'}">저녁</div>
         </div>
-
-
-
     </div>
-
+        <div class = "row flex-row flex-nowrap overflow-auto mb-2">
+            <div th:style = "${'margin : 50px'}">아침</div>
+            <div class="mb-2 fw-semibold"> <img th:src = "@{img/butadong.png}" th:style = "${'width : 60px;'}"></div>
+            <!-- n일차 추천 요리 (시간별) -->
+            <div>
+                <div th:style = "${'margin : 50px'}">점심</div>
+                <div th:style = "${'margin : 50px'}">저녁</div>
+            </div>
+        </div>
 
 
 </div>
 </div>
+
+<script>
+
+
+
+
+</script>
