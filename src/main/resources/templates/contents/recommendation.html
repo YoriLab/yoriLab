@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/default}">
-
+<body>
     <div layout:fragment="content" class="pb-5">
         <div>
             <!-- 헤딩 -->
@@ -14,15 +14,18 @@
             <!-- 일 수 선택 -->
             <div class="d-flex flex-row align-items-center justify-content-center my-4">
                 <div class="fw-semibold me-5">일 수 선택</div>
-                <input class="btn border" type="number" value="7"/>
+                <input id="day-input" class="btn border" type="number" value="7"/>
             </div>
 
             <!-- 추천 리스트 날짜, 요리 시간별 -->
             <div>
                 <div class="mb-5"
                         th:each="recommByDay : ${recommendationFullList}">
-                    <div class="mb-2 fw-semibold"
-                            th:text="${recommByDay.day} + '일차 추천 요리'"></div>
+                    <div class="d-flex align-items-center">
+                        <div class="fw-semibold"
+                                th:text="${recommByDay.day} + '일차 추천 요리'"></div>
+                        <button type="button" class="btn btn-sm btn-outline-secondary ms-2">선택하기</button>
+                    </div>
                     <!-- n일차 추천 요리 (시간별) -->
                     <div>
                         <div th:each="recommByWhen: ${recommByDay.recommendationByWhenList}">
@@ -69,4 +72,13 @@
         <div th:replace="~{modal/receipt :: modal(${allIngredientList})}"></div>
 
     </div>
+</body>
+
+<script layout:fragment="script">
+    $("#day-input").change(function() {
+        const val = $(this).val();
+        location.href = `/recommendation?day=${val}`;
+    });
+</script>
+
 </html>

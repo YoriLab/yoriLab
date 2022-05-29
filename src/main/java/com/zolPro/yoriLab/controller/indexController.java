@@ -9,6 +9,7 @@ import com.zolPro.yoriLab.dto.RecommendationByWhen;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,13 +53,13 @@ public class indexController {
 
     /* 추천 페이지 */
     @GetMapping("/recommendation")
-    public String recommendation(Model model) {
+    public String recommendation(Model model, @RequestParam(value = "day", required = false, defaultValue = "7") Long day) {
         List<RecommendationByDay> recommendationFullList = new ArrayList<>();
 
         // 임시 생성
         Random random = new Random();
         char randomChar = 'A';
-        for (int i = 0; i < 7; i++) { // 몇일차
+        for (int i = 0; i < day; i++) { // 몇일차
             RecommendationByDay recommendationByDay = new RecommendationByDay(i+1);
             for (int j = 0; j < 3; j++) { // 아침 점심 저녁
                 RecommendationByWhen recommendationByWhen = new RecommendationByWhen(WhenToCook.values()[j]);
