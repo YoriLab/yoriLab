@@ -14,7 +14,7 @@
             <!-- 일 수 선택 -->
             <div class="d-flex flex-row align-items-center justify-content-center my-4">
                 <div class="fw-semibold me-5">일 수 선택</div>
-                <input id="day-input" class="btn border" type="number" value="7"/>
+                <input id="day-input" class="btn border" type="number" th:value="${day}"/>
             </div>
 
             <!-- 추천 리스트 날짜, 요리 시간별 -->
@@ -24,7 +24,7 @@
                     <div class="d-flex align-items-center">
                         <div class="fw-semibold"
                                 th:text="${recommByDay.day} + '일차 추천 요리'"></div>
-                        <button type="button" class="btn btn-sm btn-outline-secondary ms-2">선택하기</button>
+                        <button type="button" class="select-btn btn btn-sm btn-outline-secondary ms-2">선택하기</button>
                     </div>
                     <!-- n일차 추천 요리 (시간별) -->
                     <div>
@@ -78,6 +78,10 @@
     $("#day-input").change(function() {
         const val = $(this).val();
         location.href = `/recommendation?day=${val}`;
+    });
+
+    $(".select-btn").click(function() {
+        location.href = "/recipeView";
     });
 </script>
 

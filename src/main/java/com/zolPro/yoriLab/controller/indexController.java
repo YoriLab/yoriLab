@@ -46,6 +46,7 @@ public class indexController {
     public String recipeRecommend(Model model) {
         return "recipeView";
     }
+
     @GetMapping("/select")
     public String select(Model model) {
         return "selectIngred";
@@ -91,8 +92,12 @@ public class indexController {
             }
         }
         model.addAttribute("allIngredientList", allIngredientList);
+
+        // 일 수 전달
+        model.addAttribute("day", day);
         return "contents/recommendation";
     }
+
     /* 레시피 캘린더 페이지 */
     @GetMapping("/recipeCalendar")
     public String recipeCalendar(Model model) {
