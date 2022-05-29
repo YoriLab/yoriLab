@@ -30,7 +30,7 @@
                             <!-- 추천 요리 이미지와 이름 -->
                             <div class="col-3"
                                     th:each="recomm : ${recommByWhen.recommendationList}">
-                                <img th:src="@{${recomm.food.imgUrl}}" alt="추천 요리 이미지" class="rounded w-100">
+                                <img th:src="@{${recomm.food.imgUrl}}" alt="추천 요리 이미지" class="rounded w-100 " style="height: 20vh;=">
                                 <div th:text="${recomm.food.name}" class="text-center"></div>
                             </div>
                         </div>
@@ -41,13 +41,14 @@
             </div>
 
             <!-- 플로팅 액션 버튼 - 영수증 출력 -->
-            <button type="button" class="fixed-bottom btn btn-light" data-bs-toggle="modal" data-bs-target="#receiptModal">
+            <button type="button" class=" rounded fixed-bottom btn btn-light border fw-bold"
+                    data-bs-toggle="modal" data-bs-target="#receiptModal">
                 영수증
             </button>
         </div>
 
         <!-- 영수증 모달 -->
-        <div th:insert="/modal/receipt :: div"></div>
+        <div th:replace="~{modal/receipt :: modal(${allIngredientList})}"></div>
 
     </div>
 </html>
