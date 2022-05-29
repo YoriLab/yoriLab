@@ -24,12 +24,12 @@ public class indexController {
     public String index(Model model) {
         return "index";
     }
-
+    /* 메인 화면 */
     @GetMapping("/main")
     public String mainPage(Model model) {
         return "mainPage";
     }
-
+    /* 회원가입 페이지 */
     @GetMapping("/signup")
     public String signUp(Model model) {
         return "Signup";
@@ -42,9 +42,9 @@ public class indexController {
         return "/";
     }
 
-    @GetMapping("/recipeRecommend")
+    @GetMapping("/recipeView")
     public String recipeRecommend(Model model) {
-        return "recipeRecommend2";
+        return "recipeView";
     }
     @GetMapping("/select")
     public String select(Model model) {
@@ -92,5 +92,10 @@ public class indexController {
         }
         model.addAttribute("allIngredientList", allIngredientList);
         return "contents/recommendation";
+    }
+    /* 레시피 캘린더 페이지 */
+    @GetMapping("/recipeCalendar")
+    public String recipeCalendar(Model model) {
+        return "recipecalendar";
     }
 }
