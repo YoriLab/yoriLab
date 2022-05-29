@@ -5,39 +5,117 @@
 
 <div layout:fragment="content" class="pb-5">
     <style type="text/css">
-
-        .col{
+    .col{
         flex: 0 0 auto;
          width: 15%;
-
         }
+
 
     </style>
     <div>
-        <!-- 헤딩 -->
+
         <div class="fw-bold h4">
             <p>식단표</p>
 
         </div>
+        <div class="mb-5"
+        >
+            <div class="mb-2 fw-semibold">이런 메뉴들은 어떠세요?</div>
+            <div class="row flex-row flex-nowrap overflow-auto mb-2"
+            >
+                <div class="col"
+                >아침</div>
 
-        <!-- 일 수 선택 -->
-        <div class="d-flex flex-row align-items-center justify-content-center my-4">
-            <div class="fw-semibold me-5">일 수 선택</div>
-            <input class="btn border" type="number" value="7"/>
+                <div class="col"
+                >
+                    <img th:src="@{img/rice.png}" alt="쌀밥"
+                         th:style="${'height : 100px;'}">
+                    <div >밥</div>
+                </div>
+                <div class="col"
+                >
+                    <img th:src="@{img/fishcakesoup.png}" alt="어묵배추국"
+                         th:style="${'height : 100px;'}">
+                    <div>어묵국</div>
+                </div><div class="col">
+                <img th:src="@{img/stirredbeef.png}" alt="소고기 볶음"
+                     th:style="${'height : 100px; '}">
+                <div>소고기볶음</div>
+            </div>
+                <div class="col">
+                    <img th:src="@{img/stirredegg.png}" alt="계란 볶음"
+                         th:style="${'height : 100px; '}">
+                    <div>계란볶음</div>
+                </div>
+            </div>
+            <div class="row flex-row flex-nowrap overflow-auto mb-2"
+            >
+                <div class="col"
+                >점심</div>
+
+                <div class="col"
+                >
+                    <img th:src="@{img/rice.png}" alt="쌀밥"
+                         th:style="${'height : 100px;'}">
+                    <div ></div>
+                </div>
+                <div class="col"
+                >
+                    <img th:src="@{img/fishcakesoup.png}" alt="어묵배추국"
+                         th:style="${'height : 100px;'}">
+                    <div  class="text-center"></div>
+                </div><div class="col">
+                <img th:src="@{img/stirredbeef.png}" alt="소고기 볶음"
+                     th:style="${'height : 100px; '}">
+                <div></div>
+            </div>
+                <div class="col">
+                    <img th:src="@{img/stirredegg.png}" alt="계란 볶음"
+                         th:style="${'height : 100px; '}">
+                    <div></div>
+                </div>
+            </div>
+            <div class="row flex-row flex-nowrap overflow-auto mb-2"
+            >
+                <div class="col"
+                >저녁</div>
+
+                <div class="col"
+                >
+                    <img th:src="@{img/rice.png}" alt="쌀밥"
+                         th:style="${'height : 100px;'}">
+                    <div  ></div>
+                </div>
+                <div class="col"
+                >
+                    <img th:src="@{img/fishcakesoup.png}" alt="어묵배추국"
+                         th:style="${'height : 100px;'}">
+                    <div  ></div>
+                </div><div class="col">
+                <img th:src="@{img/stirredbeef.png}" alt="소고기 볶음"
+                     th:style="${'height : 100px; '}">
+                <div  class="text-center"></div>
+            </div>
+                <div class="col">
+                    <img th:src="@{img/stirredegg.png}" alt="계란 볶음"
+                         th:style="${'height : 100px; '}">
+                    <div  class="text-center"></div>
+                </div>
+            </div>
         </div>
 
-        <!-- 추천 리스트 날짜, 요리 시간별 -->
+
         <div>
             <div class="mb-5"
                  >
-                <div class="mb-2 fw-semibold">1일차 식단</div>
-                <!-- n일차 추천 요리 (시간별) -->
+                <div class="mb-2 fw-semibold">(해당)일차 식단</div>
+
                 <div>
                     <div class="row flex-row flex-nowrap overflow-auto mb-2"
                         >
                         <div class="col"
                         >아침</div>
-                        <!-- 추천 요리 이미지와 이름 -->
+
                         <div class="col"
                              >
                             <img th:src="@{img/rice.png}" alt="쌀밥"
@@ -118,104 +196,28 @@
 
 
             </div>
-            <div class="mb-5"
-            >
-                <div class="mb-2 fw-semibold">2일차 식단</div>
-                <!-- n일차 추천 요리 (시간별) -->
-                <div>
-                    <div class="row flex-row flex-nowrap overflow-auto mb-2"
-                    >
-                        <div class="col"
-                        >아침</div>
-                        <!-- 추천 요리 이미지와 이름 -->
-                        <div class="col"
-                        >
-                            <img th:src="@{img/rice.png}" alt="쌀밥"
-                                 th:style="${'height : 100px;'}">
-                            <div  class="text-center"></div>
-                        </div>
-                        <div class="col"
-                        >
-                            <img th:src="@{img/fishcakesoup.png}" alt="어묵배추국"
-                                 th:style="${'height : 100px;'}">
-                            <div  class="text-center"></div>
-                        </div><div class="col">
-                        <img th:src="@{img/stirredbeef.png}" alt="소고기 볶음"
-                             th:style="${'height : 100px; '}">
-                        <div  class="text-center"></div>
-                    </div>
-                        <div class="col">
-                            <img th:src="@{img/stirredegg.png}" alt="계란 볶음"
-                                 th:style="${'height : 100px; '}">
-                            <div  class="text-center"></div>
-                        </div>
-                    </div>
-                    <div class="row flex-row flex-nowrap overflow-auto mb-2"
-                    >
-                        <div class="col"
-                        >점심</div>
-                        <!-- 추천 요리 이미지와 이름 -->
-                        <div class="col"
-                        >
-                            <img th:src="@{img/rice.png}" alt="쌀밥"
-                                 th:style="${'height : 100px;'}">
-                            <div  class="text-center"></div>
-                        </div>
-                        <div class="col"
-                        >
-                            <img th:src="@{img/fishcakesoup.png}" alt="어묵배추국"
-                                 th:style="${'height : 100px;'}">
-                            <div  class="text-center"></div>
-                        </div><div class="col">
-                        <img th:src="@{img/stirredbeef.png}" alt="소고기 볶음"
-                             th:style="${'height : 100px; '}">
-                        <div  class="text-center"></div>
-                    </div>
-                        <div class="col">
-                            <img th:src="@{img/stirredegg.png}" alt="계란 볶음"
-                                 th:style="${'height : 100px; '}">
-                            <div  class="text-center"></div>
-                        </div>
-                    </div>
-                    <div class="row flex-row flex-nowrap overflow-auto mb-2"
-                    >
-                        <div class="col"
-                        >저녁</div>
-                        <!-- 추천 요리 이미지와 이름 -->
-                        <div class="col"
-                        >
-                            <img th:src="@{img/rice.png}" alt="쌀밥"
-                                 th:style="${'height : 100px;'}">
-                            <div  class="text-center"></div>
-                        </div>
-                        <div class="col"
-                        >
-                            <img th:src="@{img/fishcakesoup.png}" alt="어묵배추국"
-                                 th:style="${'height : 100px;'}">
-                            <div  class="text-center"></div>
-                        </div><div class="col">
-                        <img th:src="@{img/stirredbeef.png}" alt="소고기 볶음"
-                             th:style="${'height : 100px; '}">
-                        <div  class="text-center"></div>
-                    </div>
-                        <div class="col">
-                            <img th:src="@{img/stirredegg.png}" alt="계란 볶음"
-                                 th:style="${'height : 100px; '}">
-                            <div  class="text-center"></div>
-                        </div>
-                    </div>
-                </div>
 
-
-            </div>
         </div>
 
-        <!-- 플로팅 액션 버튼 - 영수증 출력 -->
+
 
     </div>
 
-    <!-- 영수증 모달 -->
 
+    <button id = "returnHome" th:style = "${'margin: 0 auto;'}">메인 페이지로</button>
+    <button id = "returnRecommend" th:style = "${'margin: 0 auto;'}">추천 페이지로</button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
 
+$("#returnHome").click(function(){
+location.href = "/main";
+
+})
+
+$("#returnRecommend").click(function(){
+location.href = "/recommendation";
+
+})
+</script>
 </div>
 </html>
