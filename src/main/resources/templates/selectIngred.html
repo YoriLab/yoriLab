@@ -11,6 +11,7 @@ layout:decorate="~{layouts/default}">
 
 <body>
 <div layout:fragment="content" class="pb-5">
+    <button id = "returnHome" th:style = "${'margin: 0 auto; background-color: yellow; fontcolor: white;'}">메인 페이지로</button>
     <div class="mb-2 fw-semibold">
         재료 선택
     </div>
@@ -84,23 +85,25 @@ layout:decorate="~{layouts/default}">
         선택한 재료 :
     </div>
     <button id = "selectBut" th:style = "${'margin: 0 auto;'}">선택 완료</button>
-    <button id = "returnHome" th:style = "${'margin: 0 auto;'}">메인 페이지로</button>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript">
-var texts = "";
+<script type="text/javascript">
+    var texts = "";
 
-$(".col-3").click(function(){
-alert("선택");
-alert($(this).text().trim());
-texts += $(this).text().trim();
-alert(texts);
-$("#selectIngreds").innerHTML = texts;
-})
-$("#returnHome").click(function(){
-location.href = "/main";
+    $(".col-3").click(function(){
+    alert("선택");
+    alert($(this).text().trim());
+    texts += $(this).text().trim();
+    alert(texts);
+    $(this).css({"background-color":"red"});
+    })
+    $("#returnHome").click(function(){
+    location.href = "/main";
 
-})
+    })
+    $("selectBut").click(function(){
 
+    })
 
 </script>
 

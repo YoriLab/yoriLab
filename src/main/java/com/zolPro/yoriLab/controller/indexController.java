@@ -41,9 +41,9 @@ public class indexController {
         return "/";
     }
 
-    @GetMapping("/recipeRecommend")
+    @GetMapping("/recipeView")
     public String recipeRecommend(Model model) {
-        return "recipeRecommend2";
+        return "recipeView";
     }
     @GetMapping("/select")
     public String select(Model model) {
