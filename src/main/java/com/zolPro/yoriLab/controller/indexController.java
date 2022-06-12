@@ -52,51 +52,7 @@ public class indexController {
         return "selectIngred";
     }
 
-    /* 추천 페이지 */
-    @GetMapping("/recommendation")
-    public String recommendation(Model model, @RequestParam(value = "day", required = false, defaultValue = "7") Long day) {
-        List<RecommendationByDay> recommendationFullList = new ArrayList<>();
 
-        // 임시 생성
-        Random random = new Random();
-        char randomChar = 'A';
-        for (int i = 0; i < day; i++) { // 몇일차
-            RecommendationByDay recommendationByDay = new RecommendationByDay(i+1);
-            for (int j = 0; j < 3; j++) { // 아침 점심 저녁
-                RecommendationByWhen recommendationByWhen = new RecommendationByWhen(WhenToCook.values()[j]);
-                for (int k = 0; k < random.nextInt(5) + 1; k++) {
-                    List<Ingredient> randomIngredientList = new ArrayList<>();
-                    randomIngredientList.add(new Ingredient("랜덤 재료 " + i + j + k));
-
-                    Recommendation recommendation = new Recommendation(i + 1, WhenToCook.values()[j], new Date(),
-                            new Food("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnV_w7RbpYilhi7ifIg-DZcvZLscDM5ZDhPA&usqp=CAU", "음식 " + randomChar,
-                                    randomIngredientList));
-                    randomChar++;
-                    recommendationByWhen.addRecomm(recommendation);
-                }
-                recommendationByDay.addRecommByWhen(recommendationByWhen);
-            }
-            recommendationFullList.add(recommendationByDay);
-        }
-
-        // 레시피 일차별 출력 위한 변수
-        model.addAttribute("recommendationFullList", recommendationFullList);
-
-        // 레시피 재료들 영수증 출력 위한 변수
-        List<Ingredient> allIngredientList = new ArrayList<>();
-        for (RecommendationByDay recommendationByDay : recommendationFullList) {
-            for (RecommendationByWhen recommendationByWhen : recommendationByDay.getRecommendationByWhenList()) {
-                for (Recommendation recommendation : recommendationByWhen.getRecommendationList()) {
-                    allIngredientList.addAll(recommendation.getFood().getIngredientList());
-                }
-            }
-        }
-        model.addAttribute("allIngredientList", allIngredientList);
-
-        // 일 수 전달
-        model.addAttribute("day", day);
-        return "contents/recommendation";
-    }
 
     /* 레시피 캘린더 페이지 */
     @GetMapping("/recipeCalendar")
