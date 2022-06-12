@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <title>YoriLab</title>
@@ -12,11 +13,11 @@
             crossorigin="anonymous"></script>
 </head>
 
-    <body class="vh-100 vw-100 bg-primary">
+<body class="vh-100 vw-100 bg-primary">
         <div class="main vh-100 vw-100"
              th:style="'background-image: url(' + @{img/firstPage.jpg} +');'">
-            <!--main text-->
-                <div class="fontMain">Yori Lab</div>
+                <!--main text-->
+                <div id="main_text" class="fontMain">Yori Lab</div>
         </div>
     </body>
 </html>
@@ -32,12 +33,24 @@
   }
   .fontMain {
     width: 515px;
-    color: rgba(0, 0, 0, 1);
     font-family: Nanum Brush Script;
     font-weight: Regular;
     font-size: 150px;
     opacity: 1;
     text-align: center;
   }
-
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+        $("#main_text").on({
+         "mouseover" : function(){
+            $("#main_text").css({"color":"white"});
+         },
+         "mouseout" : function(){
+            $("#main_text").css({"color":"black"});
+         },
+         "click" : function(){
+           location.href = "/main";
+         }
+        });
+</script>
