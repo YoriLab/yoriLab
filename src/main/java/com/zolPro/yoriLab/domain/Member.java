@@ -3,13 +3,24 @@ package com.zolPro.yoriLab.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
+@Entity
 @Getter
 @AllArgsConstructor
 @Data
+@NoArgsConstructor
 public class Member {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String emailID; // 이메일 ID
     private String PW; // 비밀번호
     private String name; // 이름
