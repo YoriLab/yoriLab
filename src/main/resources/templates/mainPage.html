@@ -7,6 +7,7 @@
     <div>
         <h1><mark class="text-white">YoriLab</mark></h1>
         <img th:src="@{/img/mainPage.png}" class="rounded-pill shadow position-relative" alt="recipe"><br><br>
+        <button id="recomm-btn" class="position-absolute top-50 start-50 translate-middle btn btn-lg btn-success">추천 받기</button>
 
         <div class="box col-12">
             <input type="ID" class="float-start col-3" placeholder="Email ID"/>
@@ -18,6 +19,13 @@
 
 </div>
 </html>
+
+<script>
+    $("#recomm-btn").click(function() {
+        location.href = "/recommendation";
+    });
+</script>
+
 <style>
   .box input{
       float: right;
