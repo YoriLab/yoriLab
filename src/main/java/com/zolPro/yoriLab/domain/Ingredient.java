@@ -5,10 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,6 +18,10 @@ public class Ingredient {
     private Long id;
     private String name;
     private String imgUrl;
+
+    @OneToMany(mappedBy = "ingredient")
+    private List<IngredientAmount> ingredientAmountList;
+
 
     public Ingredient(String s) {
 

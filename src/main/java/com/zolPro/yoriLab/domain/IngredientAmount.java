@@ -12,13 +12,13 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class IngredientAmount {
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="ingredient_id")
     private Ingredient ingredient;
 
     @Id
-    @ManyToOne
-    @JoinColumn()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
     private Food food;
 
     private Integer count;
