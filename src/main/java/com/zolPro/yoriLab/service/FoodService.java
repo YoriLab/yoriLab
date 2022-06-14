@@ -16,7 +16,15 @@ import java.util.List;
 public class FoodService {
     private FoodRepository foodRepository;
 
-    public List<Food> getSomeFoodListSpecificCount(Integer count) {
-        return foodRepository.findSpecificCount(count);
+//    public List<Food> getSomeFoodListSpecificCount(Integer count) {
+//        return foodRepository.findSpecificCount(count);
+//    }
+
+    public Long getTotalCount() {
+        return foodRepository.countTotal();
+    }
+
+    public List<Food> findAllByIdList(List<Long> idList) {
+        return foodRepository.findAllByIdList(idList);
     }
 }
