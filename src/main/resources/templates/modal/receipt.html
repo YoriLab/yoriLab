@@ -17,7 +17,12 @@
                  <p class="fw-bold text-center">아래 목록들을 구매해주세요</p>
                  <section>
                     <ol>
-                        <li th:text="${ingredient.name}" th:each="ingredient: ${allIngredientList}"></li>
+                        <li th:each="entry: ${allIngredientList}">
+                            <div class="d-flex justify-content-between">
+                                <span th:text="${entry.key}"></span>
+                                <span th:text="${entry.value}"></span>
+                            </div>
+                        </li>
                     </ol>
                  </section>
              </div>
