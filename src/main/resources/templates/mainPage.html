@@ -1,19 +1,25 @@
 <!DOCTYPE html>
+
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/default}">
 
 <div layout:fragment="content">
-    <div>
-        <h1><mark class="text-white">YoriLab</mark></h1>
-        <img th:src="@{/img/mainPage.png}" class="rounded-pill shadow position-relative" alt="recipe"><br><br>
-        <button id="recomm-btn" class="position-absolute top-50 start-50 translate-middle btn btn-lg btn-success">추천 받기</button>
 
+    <div >
+        <h1><mark class="text-white">YoriLab</mark></h1>
+        
+        <img th:src="@{/img/mainPage.png}" class="rounded-pill shadow position-relative" alt="recipe"><br><br>
+        <button id="recomm-btn" class="top-50 start-50 translate-middle btn btn-lg btn-success">추천 받기</button>
+        <button id="ingre-select-btn" class="start-80 translate-middle btn btn-lg btn-success">재료 선택</button>
         <div class="box col-12">
-            <input type="ID" class="float-start col-3" placeholder="Email ID"/>
-            <input type="password" class="float-start col-3" placeholder="Password"/>
-            <button type="button" class="float-end btn btn-success btn-lg">회원가입</button>
-            <button type="button" class="float-end btn btn-light btn-lg">로그인</button>
+            <form method="post">
+            <input type="ID" name = "emailID"class="float-start col-3" placeholder="Email ID"/>
+            <input type="password" name = "passwd" class="float-start col-3" placeholder="Password"/>
+                <button type="button" class="float-end btn btn-light btn-lg" id = "Login-btn">로그인</button>
+            </form>
+            <button type="button" class="float-end btn btn-success btn-lg"id = "signUp-btn">회원가입</button>
+
         </div>
     </div>
 
@@ -24,6 +30,19 @@
     $("#recomm-btn").click(function() {
         location.href = "/recommendation";
     });
+    $("#signUp-btn").click(function() {
+        location.href = "/signup";
+    });
+    $("#ingre-select-btn").click(function() {
+        location.href = "/select";
+    });
+
+    $("#Login-btn").click(function() {
+
+
+        alert("로그인");
+    });
+
 </script>
 
 <style>

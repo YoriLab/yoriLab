@@ -1,14 +1,15 @@
 package com.zolPro.yoriLab.controller;
 
-import com.zolPro.yoriLab.domain.Food;
-import com.zolPro.yoriLab.domain.Ingredient;
-import com.zolPro.yoriLab.domain.Recommendation;
-import com.zolPro.yoriLab.domain.WhenToCook;
+import com.zolPro.yoriLab.domain.*;
 import com.zolPro.yoriLab.dto.RecommendationByDay;
 import com.zolPro.yoriLab.dto.RecommendationByWhen;
+import com.zolPro.yoriLab.service.MemberServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -18,7 +19,8 @@ import java.util.Random;
 
 @Controller
 public class indexController {
-
+    @Autowired
+    MemberServiceImpl memberServiceImpl;
     /* 인덱스 페이지 */
     @GetMapping("/")
     public String index(Model model) {
@@ -58,5 +60,33 @@ public class indexController {
     @GetMapping("/recipeCalendar")
     public String recipeCalendar(Model model) {
         return "recipecalendar";
+    }
+    @PostMapping("/join")
+    public String printResult(@ModelAttribute Member member) {
+
+
+        System.out.println(member.getEmailID());
+        System.out.println(member.getName());
+        System.out.println(member.getPW());
+
+        Member findMember;
+
+        findMember = memberServiceImpl.find(member.getEmailID());
+
+        if(findMember == null) {
+            System.out.println("success");
+            memberServiceImpl.join(member);
+            return "mainPage";
+        }else {
+            System.out.println("fail");
+            return "Signup";
+        }
+
+
+    }
+
+    @PostMapping("/login")
+    public String login(Model model) {
+        return "main";
     }
 }

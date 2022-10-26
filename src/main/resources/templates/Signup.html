@@ -8,32 +8,24 @@
         <div class="signupContainer col-6">
             <div class="box col-12">
                 <h1 class="col">Sign up</h1>
-                <input type="email" class="col" placeholder="Email"/>
-                <input type="password" class="col" placeholder="비밀번호"/>
-                <input type="password" class="col" placeholder="비밀번호 확인"/>
-                <input type="text" class="col" placeholder="이름"/>
-                <input type="text" class="col" placeholder="나이"/>
+                <form name = "JoinForm" method = "post">
+                <input type="email" class="col" id = "email" name = "emailID" placeholder="Email"/>
+                <input type="password" class="col" id = "passwd" name = "PW" placeholder="비밀번호"/>
+                <input type="password" class="col" id = "passwdValid" placeholder="비밀번호 확인"/>
+                <input type="text" class="col" id = "name" name = "name" placeholder="이름"/>
 
-                <div class="row">
-                    <div class="col-2">선호하는 요리</div>
-                    <div class="form-check form-check-inline col-2">
-                        <label  class="checkbox-inline">
-                            <input class="form-check-label col-1" type="checkbox" id="inlineCheckbox1">한식
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline col-2">
-                        <label for="seller" class="checkbox-inline col-1">
-                            <input class="form-check-label" type="checkbox" id="inlineCheckbox2">양식
-                        </label>
-                    </div>
-                </div>
 
-                <label for="buyer" class="checkbox-inline">
+                <!--<label for="buyer" class="checkbox-inline">
                     <input type="checkbox" id="buyer">직업
                 </label>
 
+                <label for="buyer" class="checkbox-inline">
+                    <input type="checkbox" id="buyer">
+                </label>-->
+                    <button class="col" id = "signBtn" type = "button">Sign</button>
 
-                <button class="col">Sign</button>
+                </form>
+                <button class="col" id = "goBack" type = "button">메인 페이지로</button>
             </div>
 
         </div>
@@ -131,10 +123,75 @@
     }
 
     input[type=checkbox] {
+        width : 11px;
+        display: inline;
       margin: 2px 0 0;
       align-self: flex-start;
     }
 
 
-
 </style>
+
+<script type="text/javascript">
+
+$("#signBtn").click(function(){
+var result = true;
+var emailText = $("#email").val();
+if(emailText == "") {
+alert("이메일을 입력해 주세요.");
+result = false;
+
+}
+var passwdText = $("#passwd").val();
+if(passwdText == "") {
+alert("비밀번호를 입력해 주세요.");
+result = false;
+}
+var passwdValidText = $("#passwdValid").val();
+if(passwdValidText == "") {
+alert("이메일을 입력해 주세요.");
+
+result = false;
+
+}else if(passwdText !=passwdValidText) {
+alert("비밀번호가 다릅니다.");
+result = false;
+}
+var nameText = $("#name").val();
+if(nameText == "") {
+alert("이름을 입력해 주세요.");
+
+result = false;
+
+}
+var ageText = alert($("#age").val());
+if(ageText == "") {
+alert("나이를 입력해 주세요.");
+
+result = false;
+
+}
+
+if(result == true) {
+JoinForm.method="POST";
+JoinForm.action = "/join";
+
+}
+
+})
+
+$("#goBack").click(function(){
+
+location.href = "/main";
+})
+
+var firstSelect = 0;
+
+$("#skill").change(function(){
+
+alert("checked");
+alert($(this).val());
+})
+
+
+</script>

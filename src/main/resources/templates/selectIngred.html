@@ -11,10 +11,15 @@ layout:decorate="~{layouts/default}">
 
 <body>
 <div layout:fragment="content" class="pb-5">
-    <button id = "returnHome" th:style = "${'margin: 0 auto; background-color: yellow; fontcolor: white;'}">메인 페이지로</button>
+    <button id = "returnHome" class="top-50 start-50 translate-middle btn btn-lg btn-success">메인 페이지로</button>
     <div class="mb-2 fw-semibold">
         재료 선택
     </div>
+
+    <div class="mb-2 fw-semibold" style = "display: center;">
+        원하시는 재료를 클릭해주세요.
+    </div>
+
 <div class="row flex-row flex-nowrap overflow-auto mb-2"
      >
     <!-- 추천 요리 이미지와 이름 -->
@@ -84,26 +89,47 @@ layout:decorate="~{layouts/default}">
     <div id = "selectIngreds" class="mb-2 fw-semibold">
         선택한 재료 :
     </div>
-    <button id = "selectBut" th:style = "${'margin: 0 auto;'}">선택 완료</button>
+    <button id = "selectBut" class="top-50 start-50 btn btn-lg btn-success">선택 완료</button>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-    var texts = "";
-
+    var texts = new String("");
+    var str = $("#selectIngreds").text();
+    //재료 클릭
     $(".col-3").click(function(){
-    alert("선택");
-    alert($(this).text().trim());
+    if(texts.indexOf($(this).text().trim()) == -1) {
     texts += $(this).text().trim();
-    alert(texts);
-    $(this).css({"background-color":"red"});
+    texts += ' ';
+    $(this).css({"background-color":"#11ffeeff"});
+    }else {
+    texts = texts.replace($(this).text().trim() + ' ','');
+    $(this).css({"background-color":""});
+    }
+
+
+    $("#selectIngreds").text(str + texts);
+
+
     })
+
+    //메인 페이지로 가기 클릭
     $("#returnHome").click(function(){
     location.href = "/main";
     })
-    $("selectBut").click(function(){
+
+    //선택버튼 클릭
+    $("#selectBut").click(function(){
+    if(texts == "") {
+    alert("재료를 선택해 주세요.");
+    }else {
+    if(confirm(texts + "을 선택하시겠습니까?")) {
+        location.href = "/recipeView";
+    }
+
+    }
+
 
     })
-
 </script>
 
 </div>
