@@ -5,26 +5,26 @@ import com.zolPro.yoriLab.dto.RecommendationByDay;
 import com.zolPro.yoriLab.dto.RecommendationByWhen;
 import com.zolPro.yoriLab.service.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 @Controller
+
 public class indexController {
     @Autowired
     MemberServiceImpl memberServiceImpl;
     /* 인덱스 페이지 */
     @GetMapping("/")
-    public String index(Model model) {
-        return "index";
+    public String index(Model model,HttpSession session) {
+        session.setAttribute("state","0"); return "index";
     }
     /* 메인 화면 */
     @GetMapping("/main")
@@ -62,7 +62,7 @@ public class indexController {
         return "recipecalendar";
     }
     @PostMapping("/join")
-    public String printResult(@ModelAttribute Member member) {
+    public String printResult(@ModelAttribute Member member ,Model model) {
 
 
         System.out.println(member.getEmailID());
@@ -79,6 +79,7 @@ public class indexController {
             return "mainPage";
         }else {
             System.out.println("fail");
+            model.addAttribute("name", "error");
             return "Signup";
         }
 
@@ -86,7 +87,33 @@ public class indexController {
     }
 
     @PostMapping("/login")
-    public String login(Model model) {
-        return "main";
+    public String login(Model model, @ModelAttribute Member member, HttpSession session) {
+
+        String emailID = member.getEmailID();
+        System.out.println(emailID);
+        Member findMember = memberServiceImpl.find(emailID);
+
+        if(findMember == null) {
+            model.addAttribute("error", "존재하지 않는 회원입니다.");
+
+
+        }else {
+            if(!member.getPW().equals(findMember.getPW())) {
+                System.out.println("not same");
+                model.addAttribute("error", "비밀번호가 잘못 되었습니다.");
+            }else {
+
+                session.setAttribute("member",findMember);
+            }
+
+        }
+
+        return "mainPage";
+    }
+
+    @GetMapping("/logout")
+    public String login(HttpSession session){
+        session.removeAttribute("member");
+        return "mainPage";
     }
 }

@@ -4,6 +4,7 @@
       layout:decorate="~{layouts/default}">
 
 <div layout:fragment="content">
+    <div th:text="${name}"></div>
     <div class="ContainerSignUp">
         <div class="signupContainer col-6">
             <div class="box col-12">
@@ -30,7 +31,9 @@
 
         </div>
     </div>
+
 </div>
+
 </html>
 
 <style media="screen">
@@ -149,7 +152,7 @@ result = false;
 }
 var passwdValidText = $("#passwdValid").val();
 if(passwdValidText == "") {
-alert("이메일을 입력해 주세요.");
+alert("확인 비밀번호을 입력해 주세요.");
 
 result = false;
 
@@ -164,7 +167,7 @@ alert("이름을 입력해 주세요.");
 result = false;
 
 }
-var ageText = alert($("#age").val());
+var ageText = $("#age").val();
 if(ageText == "") {
 alert("나이를 입력해 주세요.");
 
@@ -173,10 +176,14 @@ result = false;
 }
 
 if(result == true) {
-JoinForm.method="POST";
 JoinForm.action = "/join";
+JoinForm.submit();
 
+
+}else {
+alert("다시 입력해 주세요");
 }
+
 
 })
 

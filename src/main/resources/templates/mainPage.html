@@ -8,22 +8,40 @@
 
     <div >
         <h1><mark class="text-white">YoriLab</mark></h1>
-        
-        <img th:src="@{/img/mainPage.png}" class="rounded-pill shadow position-relative" alt="recipe"><br><br>
-        <button id="recomm-btn" class="top-50 start-50 translate-middle btn btn-lg btn-success">추천 받기</button>
-        <button id="ingre-select-btn" class="start-80 translate-middle btn btn-lg btn-success">재료 선택</button>
+
+        <img th:src="@{/img/mainPage.png}" class="rounded-pill shadow position-relative" alt="recipe" th:style="${'width:65%;'}"><br><br>
+
         <div class="box col-12">
-            <form method="post">
+            <form name = "LoginForm"method="post">
+                <th:block th:if="${session.member != null}">
+                    <span th:text="${session.member.name} +'님, 반갑습니다!'"></span>
+
+                </th:block>
+                <th:block th:if="${session.member == null}">
             <input type="ID" name = "emailID"class="float-start col-3" placeholder="Email ID"/>
-            <input type="password" name = "passwd" class="float-start col-3" placeholder="Password"/>
-                <button type="button" class="float-end btn btn-light btn-lg" id = "Login-btn">로그인</button>
+            <input type="password" name = "PW" class="float-start col-3" placeholder="Password"/>
+                    <span th:text="${error}" th:style="${'color:red;'}"></span>
+                </th:block>
+                <th:block th:if="${session.member != null}">
+                    <span>
+                    <button type = "button" id="recomm-btn" class="float-end top-50 start-50 translate-middle btn btn-lg btn-success">추천 받기</button>
+                    <button type = "button" id="ingre-select-btn" class="float-end start-80 translate-middle btn btn-lg btn-success">재료 선택</button>
+                    <button type="button" id = "Logout-btn" class="float-end start-80 translate-middle btn btn-lg btn-light">로그 아웃</button>
+
+                    </span>
+                </th:block>
+                <th:block th:if="${session.member == null}">
+                    <button type="button" class="float-end btn btn-success btn-lg"id = "signUp-btn">회원가입</button>
+                    <button type="button" class="float-end btn btn-light btn-lg" id = "Login-btn">로그인</button>
+                </th:block>
             </form>
-            <button type="button" class="float-end btn btn-success btn-lg"id = "signUp-btn">회원가입</button>
+
 
         </div>
     </div>
 
 </div>
+
 </html>
 
 <script>
@@ -40,7 +58,16 @@
     $("#Login-btn").click(function() {
 
 
-        alert("로그인");
+
+        LoginForm.action = "/login";
+        LoginForm.submit();
+    });
+    $("#Logout-btn").click(function() {
+
+
+
+        location.href = "/logout";
+
     });
 
 </script>
