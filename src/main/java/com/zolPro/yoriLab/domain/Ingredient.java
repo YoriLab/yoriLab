@@ -1,5 +1,6 @@
 package com.zolPro.yoriLab.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ingredient {
@@ -20,6 +21,7 @@ public class Ingredient {
     private String imgUrl;
 
     @OneToMany(mappedBy = "ingredient")
+    @JsonIgnore
     private List<IngredientAmount> ingredientAmountList;
 
 

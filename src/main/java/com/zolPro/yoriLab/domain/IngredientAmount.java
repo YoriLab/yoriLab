@@ -1,13 +1,15 @@
 package com.zolPro.yoriLab.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Data
+@Getter
 @IdClass(IngredientAmountId.class)
 @NoArgsConstructor
 public class IngredientAmount {

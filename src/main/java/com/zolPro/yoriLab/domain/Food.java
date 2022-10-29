@@ -1,5 +1,6 @@
 package com.zolPro.yoriLab.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -12,7 +13,6 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +37,7 @@ public class Food {
 
 
     @OneToMany(mappedBy = "food")
+    @JsonIgnore
     private List<IngredientAmount> ingredientAmountList;
 
 

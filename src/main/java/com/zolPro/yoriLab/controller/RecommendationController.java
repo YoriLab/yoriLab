@@ -46,6 +46,7 @@ public class RecommendationController {
 //                List<Food> randomFoodList = foodService.getSomeFoodListSpecificCount(randomNum);
                 List<Food> randomFoodList = foodService.findAllByIdList(randomFoodIdList);
 
+
                 // 반복문 돌며 임시 데이터 생성
                 for (int k = 0; k < randomFoodList.size(); k++) {
 //                    List<Ingredient> randomIngredientList = new ArrayList<>();
@@ -66,11 +67,10 @@ public class RecommendationController {
         model.addAttribute("recommendationFullList", recommendationFullList);
 
 
-
         // 레시피 재료들 영수증 출력 위한 변수
         // key: 재료 이름
         // value: Map<단위, 개수>
-        Map<String, Map<String, Integer>> allIngredientCount = new HashMap<>();
+        Map<String, Map<String, Double>> allIngredientCount = new HashMap<>();
 
         for (RecommendationByDay recommendationByDay : recommendationFullList) {
             for (RecommendationByWhen recommendationByWhen : recommendationByDay.getRecommendationByWhenList()) {
@@ -78,10 +78,10 @@ public class RecommendationController {
                     List<IngredientAmount> ingredientAmountList = recommendation.getFood().getIngredientAmountList();
                     for (IngredientAmount ingredientAmount : ingredientAmountList) {
                         Ingredient ingredient = ingredientAmount.getIngredient();
-                        Map<String, Integer> specificIngredientUnitCount = allIngredientCount.getOrDefault(ingredient.getName(), new HashMap<>());
+                        Map<String, Double> specificIngredientUnitCount = allIngredientCount.getOrDefault(ingredient.getName(), new HashMap<>());
 
                         specificIngredientUnitCount.put(ingredientAmount.getUnit(),
-                                specificIngredientUnitCount.getOrDefault(ingredientAmount.getUnit(), 0) + ingredientAmount.getCount());
+                                specificIngredientUnitCount.getOrDefault(ingredientAmount.getUnit(), 0.0) + ingredientAmount.getCount());
 
                         allIngredientCount.put(ingredient.getName(), specificIngredientUnitCount);
                     }
@@ -98,9 +98,8 @@ public class RecommendationController {
             allIngredientList.put(s, allIngredientCount.get(s).get(unit) + unit);
         }
 
-
-//        model.addAttribute("allIngredientList", allIngredientList);
-        model.addAttribute("allIngredientList", new HashMap<>());
+        model.addAttribute("allIngredientList", allIngredientList);
+//        model.addAttribute("allIngredientList", new HashMap<>());
 
         // 일 수 전달
         model.addAttribute("day", day);
