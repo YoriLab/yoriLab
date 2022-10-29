@@ -37,12 +37,19 @@ public class indexController {
         return "Signup";
     }
 
-    /* 영수증 페이지 */
-    @GetMapping("/receipt")
-    public String receipt(Model model) {
-        // 변경 예정
-        return "/";
-    }
+//    /* 영수증 페이지 */
+//    @GetMapping("/receipt")
+//    public String receipt(Model model) {
+//        // 변경 예정
+//        return "/";
+//    }
+//
+//    /* 레시피 상세 페이지 */
+//    @GetMapping("/recipe-detail")
+//    public String recipeDetail(Model model) {
+//        // 변경 예정
+//        return "/";
+//    }
 
     @GetMapping("/recipeView")
     public String recipeRecommend(Model model) {
