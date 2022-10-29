@@ -60,11 +60,14 @@ public class RecommendationController {
             recommendationFullList.add(recommendationByDay);
         }
 
+
+
         // 레시피 일차별 출력 위한 변수
         model.addAttribute("recommendationFullList", recommendationFullList);
 
+
+
         // 레시피 재료들 영수증 출력 위한 변수
-//        List<Ingredient> allIngredientList = new ArrayList<>();
         // key: 재료 이름
         // value: Map<단위, 개수>
         Map<String, Map<String, Integer>> allIngredientCount = new HashMap<>();
@@ -81,7 +84,6 @@ public class RecommendationController {
                                 specificIngredientUnitCount.getOrDefault(ingredientAmount.getUnit(), 0) + ingredientAmount.getCount());
 
                         allIngredientCount.put(ingredient.getName(), specificIngredientUnitCount);
-//                        ingredientAmount.getIngredient().getName()
                     }
 
 
@@ -97,7 +99,8 @@ public class RecommendationController {
         }
 
 
-        model.addAttribute("allIngredientList", allIngredientList);
+//        model.addAttribute("allIngredientList", allIngredientList);
+        model.addAttribute("allIngredientList", new HashMap<>());
 
         // 일 수 전달
         model.addAttribute("day", day);
