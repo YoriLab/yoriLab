@@ -18,8 +18,8 @@
 
                 </th:block>
                 <th:block th:if="${session.member == null}">
-            <input type="ID" name = "emailID"class="float-start col-3" placeholder="Email ID"/>
-            <input type="password" name = "PW" class="float-start col-3" placeholder="Password"/>
+            <input type="ID" id = "email" name = "emailID"class="float-start col-3" placeholder="Email ID"/>
+            <input type="password" id = "pw" name = "PW" class="float-start col-3" placeholder="Password"/>
                     <span th:text="${error}" th:style="${'color:red;'}"></span>
                 </th:block>
                 <th:block th:if="${session.member != null}">
@@ -56,11 +56,20 @@
     });
 
     $("#Login-btn").click(function() {
+        var result = true;
+        if($("#email").val() == "") {
+            alert("emailID를 입력해 주세요.");
+            result = false;
+        }else if($("#pw").val() == ""){
+        alert("비밀번호를 입력해 주세요.");
+        result = false;
+        }else {
+        result = true;
+        }
 
-
-
-        LoginForm.action = "/login";
-        LoginForm.submit();
+        if(result == true)
+        { LoginForm.action = "/login";
+        LoginForm.submit();}
     });
     $("#Logout-btn").click(function() {
 
