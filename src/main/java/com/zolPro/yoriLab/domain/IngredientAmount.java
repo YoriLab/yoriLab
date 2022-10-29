@@ -21,7 +21,7 @@ public class IngredientAmount {
     @JoinColumn
     private Food food;
 
-    private Integer count;
+    private Double count;
 
     private String unit;
 }
