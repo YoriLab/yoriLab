@@ -4,6 +4,7 @@ import com.zolPro.yoriLab.domain.*;
 import com.zolPro.yoriLab.dto.MemberForm;
 import com.zolPro.yoriLab.dto.RecommendationByDay;
 import com.zolPro.yoriLab.dto.RecommendationByWhen;
+import com.zolPro.yoriLab.service.FavoringredServiceImpl;
 import com.zolPro.yoriLab.service.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
@@ -22,6 +23,8 @@ import java.util.Random;
 public class indexController {
     @Autowired
     MemberServiceImpl memberServiceImpl;
+    @Autowired
+    FavoringredServiceImpl favoringredServiceImpl;
     /* 인덱스 페이지 */
     @GetMapping("/")
     public String index(Model model,HttpSession session) {
@@ -124,6 +127,13 @@ public class indexController {
     @GetMapping("/logout")
     public String login(HttpSession session){
         session.removeAttribute("member");
+        return "mainPage";
+    }
+
+    @PostMapping("/select")
+    public String selectFavorIngred(@ModelAttribute favoringredList ingredList){
+        System.out.println("ingred : " + ingredList.getIngred());
+        favoringredServiceImpl.insert(ingredList);
         return "mainPage";
     }
 }
