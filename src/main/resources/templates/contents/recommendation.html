@@ -92,8 +92,16 @@
 
                     <!-- 바디 -->
                     <div class="modal-body">
-                        <h6 class="fw-bold">조리법</h6>
-                        <p class="lh-lg" id="recipe-doc">...</p>
+                        <section class="mb-5">
+                            <h6 class="fw-bold">재료</h6>
+                            <div class="lh-sm" >
+                                <ul id="recipe-ing" class="d-flex flex-wrap text-center">...</ul>
+                            </div>
+                        </section>
+                        <section>
+                            <h6 class="fw-bold">조리법</h6>
+                            <p class="lh-lg" id="recipe-doc">...</p>
+                        </section>
                         <!--                 <section>-->
                         <!--                    <ol>-->
                         <!--                        <li th:each="entry: ${allIngredientList}">-->
@@ -126,17 +134,32 @@
     function onClickRecipe(recipe) {
         document.getElementById("recipe-header").innerText = recipe.name;
         document.getElementById("recipe-doc").innerText = recipe.doc;
+
+        let ing_html = recipe.ingredientAmountList.map(x => '<li>' +  x.ingredient.name + ' ' +  x.count + x.unit + '</li>').join('\n');
+        $("#recipe-ing").html(ing_html);
+
         $('#recipe-modal').modal('show');
     }
 </script>
 
 
 <style layout:fragment="style">
+    ul#recipe-ing {
+        list-style: none;
+    }
+
+    ul#recipe-ing li {
+        margin: 1rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
     #receipt-btn {
         position: fixed;
         right: 20px;
         bottom: 20px;
-    };
+    }
+
 </style>
 
 </html>

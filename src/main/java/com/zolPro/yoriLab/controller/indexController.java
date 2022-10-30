@@ -1,6 +1,7 @@
 package com.zolPro.yoriLab.controller;
 
 import com.zolPro.yoriLab.domain.*;
+import com.zolPro.yoriLab.dto.MemberForm;
 import com.zolPro.yoriLab.dto.RecommendationByDay;
 import com.zolPro.yoriLab.dto.RecommendationByWhen;
 import com.zolPro.yoriLab.service.MemberServiceImpl;
@@ -68,20 +69,22 @@ public class indexController {
     public String recipeCalendar(Model model) {
         return "recipecalendar";
     }
+
     @PostMapping("/join")
-    public String printResult(@ModelAttribute Member member ,Model model) {
+    public String printResult(@ModelAttribute MemberForm memberForm , Model model) {
+        System.out.println("memberForm = " + memberForm);
 
-
-        System.out.println(member.getEmailID());
-        System.out.println(member.getName());
-        System.out.println(member.getPW());
+        System.out.println(memberForm.getEmailID());
+        System.out.println(memberForm.getName());
+        System.out.println(memberForm.getPW());
 
         Member findMember;
 
-        findMember = memberServiceImpl.find(member.getEmailID());
+        findMember = memberServiceImpl.find(memberForm.getEmailID());
 
         if(findMember == null) {
             System.out.println("success");
+            Member member = new Member(memberForm.getEmailID(), memberForm.getPW(), memberForm.getName());
             memberServiceImpl.join(member);
             return "mainPage";
         }else {
@@ -94,9 +97,9 @@ public class indexController {
     }
 
     @PostMapping("/login")
-    public String login(Model model, @ModelAttribute Member member, HttpSession session) {
+    public String login(Model model, @ModelAttribute MemberForm memberForm, HttpSession session) {
 
-        String emailID = member.getEmailID();
+        String emailID = memberForm.getEmailID();
         System.out.println(emailID);
         Member findMember = memberServiceImpl.find(emailID);
 
@@ -105,7 +108,7 @@ public class indexController {
 
 
         }else {
-            if(!member.getPW().equals(findMember.getPW())) {
+            if(!memberForm.getPW().equals(findMember.getPW())) {
                 System.out.println("not same");
                 model.addAttribute("error", "비밀번호가 잘못 되었습니다.");
             }else {

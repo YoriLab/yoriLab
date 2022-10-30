@@ -11,15 +11,23 @@ import java.util.List;
 @Entity
 @Getter
 @AllArgsConstructor
-@Data
 @NoArgsConstructor
 @Table(name = "Member")
 public class Member {
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String emailID; // 이메일 ID
     private String PW; // 비밀번호
     private String name; // 이름
 
+    @OneToMany(mappedBy = "user")
+    private List<UserLikeIngredient> likes;
+
+    public Member(String emailID, String PW, String name) {
+        this.emailID = emailID;
+        this.PW = PW;
+        this.name = name;
+    }
 }

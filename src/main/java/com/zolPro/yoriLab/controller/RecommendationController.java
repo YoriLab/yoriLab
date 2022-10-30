@@ -86,8 +86,6 @@ public class RecommendationController {
                         allIngredientCount.put(ingredient.getName(), specificIngredientUnitCount);
                     }
 
-
-//                    allIngredientList.addAll(recommendation.getFood().getIngredientList());
                 }
             }
         }
