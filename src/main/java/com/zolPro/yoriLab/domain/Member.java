@@ -16,10 +16,7 @@ import java.util.List;
 @Table(name = "Member")
 public class Member {
     @Id
-
-
     private String emailID; // 이메일 ID
     private String PW; // 비밀번호
     private String name; // 이름
-
 }

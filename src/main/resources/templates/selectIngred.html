@@ -20,76 +20,82 @@ layout:decorate="~{layouts/default}">
         원하시는 재료를 클릭해주세요.
     </div>
 
-<div class="row flex-row flex-nowrap overflow-auto mb-2"
-     >
-    <!-- 추천 요리 이미지와 이름 -->
-    <div class="col-3">
-        <img th:src="@{img/beef.png}" alt="소고기" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
-        <span th:style = "${'margin : 100px;'}">소고기</span>
-    </div>
-    <div class="col-3">
-    <img  th:src="@{img/fork.png}" alt="돼지고기" th:style = "${'height : 150px;'}" class="rounded w-100">
-        <span th:style = "${'margin : 100px;'}">돼지고기</span>
-    </div>
-    <div class="col-3">
-        <img th:src="@{img/chicken.png}" alt="닭고기" th:style = "${'height : 150px;'}" class="rounded w-100">
-        <span th:style = "${'margin : 100px;'}">닭고기</span>
-    </div>
+    <form name = "ingredListForm">
 
-</div>
-    <div class="row flex-row flex-nowrap overflow-auto mb-2" th:style = "${'margin-top: 50px;'}"
-    >
-        <div class="col-3">
-            <img th:src="@{img/rice.png}" alt="밥" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
-            <span th:style = "${'margin : 100px;'}">밥</span>
-        </div>
-        <div class="col-3">
-            <img  th:src="@{img/noodle.png}" alt="소면" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
-            <span th:style = "${'margin : 100px;'}">소면</span>
-        </div>
-        <div class="col-3">
-        <img th:src="@{img/pasta.png}" alt="파스타" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
-            <span th:style = "${'margin : 100px;'}">파스타</span>
-        </div>
-        <div class="col-3">
-            <img  th:src="@{img/bread.png}" alt="빵" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
-            <span th:style = "${'margin : 100px;'}">빵</span>
-        </div>
-    </div>
-    <div class="row flex-row flex-nowrap overflow-auto mb-2" th:style = "${'margin-top: 50px;'}"
-    >
-        <div class="col-3">
-            <img  th:src="@{img/galchi.png}" alt="갈치" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
-            <span th:style = "${'margin : 100px;'}">갈치</span>
-        </div>
-        <div class="col-3">
-            <img  th:src="@{img/octopus.png}" alt="문어" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
-            <span th:style = "${'margin : 100px;'}">문어</span>
-        </div>
-        <div class="col-3">
-            <img  th:src="@{img/shrimp.png}" alt="새우" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
-            <span th:style = "${'margin : 100px;'}">새우</span>
-        </div>
+        <div id = "hiddenInput" th:style="${'display:none;'}" th:text="${session.member.emailID}"></div>
+        <input type="hidden" name="emailID" id = "emailID">
+        <div class="row flex-row flex-nowrap overflow-auto mb-2"
+        >
+            <!-- 추천 요리 이미지와 이름 -->
+            <div class="col-3">
+                <img th:src="@{img/beef.png}" alt="쇠고기" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">쇠고기</span>
+            </div>
+            <div class="col-3">
+                <img  th:src="@{img/fork.png}" alt="돼지고기" th:style = "${'height : 150px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">돼지고기</span>
+            </div>
+            <div class="col-3">
+                <img th:src="@{img/chicken.png}" alt="닭" th:style = "${'height : 150px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">닭</span>
+            </div>
 
-    </div>
-    <div class="row flex-row flex-nowrap overflow-auto mb-2" th:style = "${'margin-top: 50px;'}">
-        <div class="col-3">
-            <img  th:src="@{img/potaeto.png}" alt="감자" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
-            <span th:style = "${'margin : 100px;'}">감자</span>
         </div>
-        <div class="col-3">
-            <img  th:src="@{img/carrot.png}" alt="당근" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
-            <span th:style = "${'margin : 100px;'}">당근</span>
+        <div class="row flex-row flex-nowrap overflow-auto mb-2" th:style = "${'margin-top: 50px;'}"
+        >
+            <div class="col-3">
+                <img th:src="@{img/onion.png}" alt="양파" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">양파</span>
+            </div>
+            <div class="col-3">
+                <img  th:src="@{img/hotpepper.png}" alt="고추" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">고추</span>
+            </div>
+            <div class="col-3">
+                <img th:src="@{img/garlic.png}" alt="마늘" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">마늘</span>
+            </div>
+
         </div>
-        <div class="col-3">
-            <img   th:src="@{img/corn.png}" alt="옥수수" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
-            <span th:style = "${'margin : 100px;'}">옥수수</span>
+        <div class="row flex-row flex-nowrap overflow-auto mb-2" th:style = "${'margin-top: 50px;'}"
+        >
+            <div class="col-3">
+                <img  th:src="@{img/tofu.png}" alt="두부" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">두부</span>
+            </div>
+            <div class="col-3">
+                <img  th:src="@{img/beans.png}" alt="콩" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">콩</span>
+            </div>
+            <div class="col-3">
+                <img  th:src="@{img/shrimp.png}" alt="새우" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">새우</span>
+            </div>
+
         </div>
-    </div>
-    <div id = "selectIngreds" class="mb-2 fw-semibold">
-        선택한 재료 :
-    </div>
-    <button id = "selectBut" class="top-50 start-50 btn btn-lg btn-success">선택 완료</button>
+        <div class="row flex-row flex-nowrap overflow-auto mb-2" th:style = "${'margin-top: 50px;'}">
+            <div class="col-3">
+                <img  th:src="@{img/pumpkin.png}" alt="호박" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">호박</span>
+            </div>
+            <div class="col-3">
+                <img  th:src="@{img/cheese.png}" alt="치즈" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">치즈</span>
+            </div>
+            <div class="col-3">
+                <img   th:src="@{img/corn.png}" alt="파프리카" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">파프리카</span>
+            </div>
+        </div>
+        <div id = "selectIngreds" name = "ingred" class="mb-2 fw-semibold">
+            선택한 재료 :
+        </div>
+        <input type="hidden" name = "ingred" id = "selectIngred">
+        <button type = "button" id = "selectBut" class="top-50 start-50 btn btn-lg btn-success">선택 완료</button>
+
+
+
+    </form>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -123,7 +129,13 @@ layout:decorate="~{layouts/default}">
     alert("재료를 선택해 주세요.");
     }else {
     if(confirm(texts + "을 선택하시겠습니까?")) {
-        location.href = "/recipeView";
+    $("#emailID").val($("#hiddenInput").text());
+    alert($("#emailID").val());
+        $("#selectIngred").val(texts);
+        ingredListForm.method = "POST";
+        ingredListForm.action = "/select";
+
+        ingredListForm.submit();
     }
 
     }
