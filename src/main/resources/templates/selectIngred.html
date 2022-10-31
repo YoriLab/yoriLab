@@ -10,7 +10,10 @@ layout:decorate="~{layouts/default}">
 
 
 <body>
+
 <div layout:fragment="content" class="pb-5">
+
+
     <button id = "returnHome" class="top-50 start-50 translate-middle btn btn-lg btn-success">메인 페이지로</button>
     <div class="mb-2 fw-semibold">
         재료 선택
@@ -27,64 +30,112 @@ layout:decorate="~{layouts/default}">
         <div class="row flex-row flex-nowrap overflow-auto mb-2"
         >
             <!-- 추천 요리 이미지와 이름 -->
-            <div class="col-3">
+            <div th:if="${#lists.contains(ingredList,'쇠고기')}" class="col-3">
+
+                <img th:src="@{img/beef.png}" alt="쇠고기"  th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">쇠고기(이미 선택하셨습니다.)</span>
+            </div>
+            <div th:if="${!#lists.contains(ingredList,'쇠고기')}" class="col-3 ingreds">
+
                 <img th:src="@{img/beef.png}" alt="쇠고기" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
                 <span th:style = "${'margin : 100px;'}">쇠고기</span>
             </div>
-            <div class="col-3">
+
+            <div th:if="${!#lists.contains(ingredList,'돼지고기')}"class="col-3 ingreds">
                 <img  th:src="@{img/fork.png}" alt="돼지고기" th:style = "${'height : 150px;'}" class="rounded w-100">
                 <span th:style = "${'margin : 100px;'}">돼지고기</span>
             </div>
-            <div class="col-3">
+            <div th:if="${#lists.contains(ingredList,'돼지고기')}"class="col-3" th:css = "${'background-color:red;'}">
+                <img  th:src="@{img/fork.png}" alt="돼지고기" th:style = "${'height : 150px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">돼지고기(이미 선택하셨습니다.)</span>
+            </div>
+            <div th:if="${!#lists.contains(ingredList,'닭')}" class="col-3 ingreds">
                 <img th:src="@{img/chicken.png}" alt="닭" th:style = "${'height : 150px;'}" class="rounded w-100">
                 <span th:style = "${'margin : 100px;'}">닭</span>
             </div>
-
+            <div th:if="${#lists.contains(ingredList,'닭')}" class="col-3" th:css = "${'background-color:red;'}">
+                <img th:src="@{img/chicken.png}" alt="닭" th:style = "${'height : 150px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">닭(이미 선택하셨습니다.)</span>
+            </div>
         </div>
         <div class="row flex-row flex-nowrap overflow-auto mb-2" th:style = "${'margin-top: 50px;'}"
         >
-            <div class="col-3">
+            <div th:if="${!#lists.contains(ingredList,'양파')}"class="col-3 ingreds">
                 <img th:src="@{img/onion.png}" alt="양파" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
                 <span th:style = "${'margin : 100px;'}">양파</span>
             </div>
-            <div class="col-3">
+            <div th:if="${#lists.contains(ingredList,'양파')}"class="col-3" th:css = "${'background-color:red;'}">
+                <img th:src="@{img/onion.png}" alt="양파" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">양파(이미 선택하셨습니다.)</span>
+            </div>
+            <div th:if="${!#lists.contains(ingredList,'고추')}"class="col-3 ingreds">
                 <img  th:src="@{img/hotpepper.png}" alt="고추" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
                 <span th:style = "${'margin : 100px;'}">고추</span>
             </div>
-            <div class="col-3">
+            <div th:if="${#lists.contains(ingredList,'고추')}"class="col-3" th:css = "${'background-color:red;'}">
+                <img  th:src="@{img/hotpepper.png}" alt="고추" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">고추(이미 선택하셨습니다.)</span>
+            </div>
+            <div th:if="${!#lists.contains(ingredList,'마늘')}"class="col-3 ingreds">
                 <img th:src="@{img/garlic.png}" alt="마늘" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
                 <span th:style = "${'margin : 100px;'}">마늘</span>
             </div>
-
+            <div th:if="${#lists.contains(ingredList,'마늘')}"class="col-3" th:css = "${'background-color:red;'}">
+                <img th:src="@{img/garlic.png}" alt="마늘" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">마늘(이미 선택하셨습니다.)</span>
+            </div>
         </div>
         <div class="row flex-row flex-nowrap overflow-auto mb-2" th:style = "${'margin-top: 50px;'}"
         >
-            <div class="col-3">
+            <div th:if="${!#lists.contains(ingredList,'두부')}" class="col-3 ingreds">
                 <img  th:src="@{img/tofu.png}" alt="두부" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
                 <span th:style = "${'margin : 100px;'}">두부</span>
             </div>
-            <div class="col-3">
+            <div th:if="${#lists.contains(ingredList,'두부')}" class="col-3" th:css = "${'background-color:red;'}">
+                <img  th:src="@{img/tofu.png}" alt="두부" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">두부(이미 선택하셨습니다.)</span>
+            </div>
+            <div th:if="${!#lists.contains(ingredList,'콩')}" class="col-3 ingreds">
                 <img  th:src="@{img/beans.png}" alt="콩" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
                 <span th:style = "${'margin : 100px;'}">콩</span>
             </div>
-            <div class="col-3">
+            <div th:if="${#lists.contains(ingredList,'콩')}" class="col-3" th:css = "${'background-color:red;'}">
+                <img  th:src="@{img/beans.png}" alt="콩" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">콩(이미 선택하셨습니다.)</span>
+            </div>
+            <div th:if="${!#lists.contains(ingredList,'새우')}" class="col-3 ingreds">
                 <img  th:src="@{img/shrimp.png}" alt="새우" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
                 <span th:style = "${'margin : 100px;'}">새우</span>
             </div>
-
+            <div th:if="${#lists.contains(ingredList,'새우')}" class="col-3" th:css = "${'background-color:red;'}">
+                <img  th:src="@{img/shrimp.png}" alt="새우" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">새우(이미 선택하셨습니다.)</span>
+            </div>
         </div>
         <div class="row flex-row flex-nowrap overflow-auto mb-2" th:style = "${'margin-top: 50px;'}">
-            <div class="col-3">
+            <div th:if="${!#lists.contains(ingredList,'호박')}"  class="col-3 ingreds" >
                 <img  th:src="@{img/pumpkin.png}" alt="호박" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
                 <span th:style = "${'margin : 100px;'}">호박</span>
             </div>
-            <div class="col-3">
+            <div th:if="${#lists.contains(ingredList,'호박')}"  class="col-3" th:css = "${'background-color:red;'}">
+                <img  th:src="@{img/pumpkin.png}" alt="호박" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">호박(이미 선택하셨습니다.)</span>
+            </div>
+            <div th:if="${!#lists.contains(ingredList,'치즈')}" class="col-3 ingreds">
                 <img  th:src="@{img/cheese.png}" alt="치즈" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
                 <span th:style = "${'margin : 100px;'}">치즈</span>
             </div>
-            <div class="col-3">
+            <div th:if="${#lists.contains(ingredList,'치즈')}" class="col-3" th:css = "${'background-color:red;'}">
+                <img  th:src="@{img/cheese.png}" alt="치즈" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">치즈(이미 선택하셨습니다.)</span>
+            </div>
+            <div th:if="${!#lists.contains(ingredList,'파프리카')}" class="col-3 ingreds">
                 <img   th:src="@{img/corn.png}" alt="파프리카" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
                 <span th:style = "${'margin : 100px;'}">파프리카</span>
+            </div>
+            <div th:if="${#lists.contains(ingredList,'파프리카')}" class="col-3" th:css = "${'background-color:red;'}">
+                <img   th:src="@{img/corn.png}" alt="파프리카" th:style = "${'height : 150px; width : 100px;'}" class="rounded w-100">
+                <span th:style = "${'margin : 100px;'}">파프리카(이미 선택하셨습니다.)</span>
             </div>
         </div>
         <div id = "selectIngreds" name = "ingred" class="mb-2 fw-semibold">
@@ -93,8 +144,6 @@ layout:decorate="~{layouts/default}">
         <input type="hidden" name = "ingred" id = "selectIngred">
         <button type = "button" id = "selectBut" class="top-50 start-50 btn btn-lg btn-success">선택 완료</button>
 
-
-
     </form>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -102,7 +151,7 @@ layout:decorate="~{layouts/default}">
     var texts = new String("");
     var str = $("#selectIngreds").text();
     //재료 클릭
-    $(".col-3").click(function(){
+    $(".ingreds").click(function(){
     if(texts.indexOf($(this).text().trim()) == -1) {
     texts += $(this).text().trim();
     texts += ' ';
@@ -130,7 +179,7 @@ layout:decorate="~{layouts/default}">
     }else {
     if(confirm(texts + "을 선택하시겠습니까?")) {
     $("#emailID").val($("#hiddenInput").text());
-    alert($("#emailID").val());
+
         $("#selectIngred").val(texts);
         ingredListForm.method = "POST";
         ingredListForm.action = "/select";

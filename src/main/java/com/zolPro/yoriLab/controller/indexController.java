@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -61,7 +62,23 @@ public class indexController {
     }
 
     @GetMapping("/select")
-    public String select(Model model) {
+    public String select(Model model,HttpSession session) {
+        Member member = (Member)session.getAttribute("member");
+        System.out.println("id = " + member.getId());
+        List<Object[]> ingredList = favoringredServiceImpl.selectByID(member.getId());
+
+
+
+        List<String> ingredString = new ArrayList<String>();
+
+        for(Object[] obj : ingredList) {
+            System.out.println(obj[1]);
+         String name = favoringredServiceImpl.getingredName((BigInteger)obj[1]);
+           System.out.println(obj[1]);
+           System.out.println(name);
+           ingredString.add(name);
+        }
+        model.addAttribute("ingredList",ingredString);
         return "selectIngred";
     }
 
@@ -108,8 +125,6 @@ public class indexController {
 
         if(findMember == null) {
             model.addAttribute("error", "존재하지 않는 회원입니다.");
-
-
         }else {
             if(!memberForm.getPW().equals(findMember.getPW())) {
                 System.out.println("not same");
@@ -129,11 +144,15 @@ public class indexController {
         session.removeAttribute("member");
         return "mainPage";
     }
-
     @PostMapping("/select")
-    public String selectFavorIngred(@ModelAttribute favoringredList ingredList){
-        System.out.println("ingred : " + ingredList.getIngred());
-        favoringredServiceImpl.insert(ingredList);
+    public String selectFavorIngred(@RequestParam String ingred, HttpSession session){
+        Member member = (Member)session.getAttribute("member");
+        System.out.println("ingred : " + ingred);
+
+        String splitArray[] = ingred.split(" ");
+        System.out.println("ingred : " + splitArray.length);
+        System.out.println("id : " + member.getId());
+        favoringredServiceImpl.insert(member,splitArray);
         return "mainPage";
     }
 }

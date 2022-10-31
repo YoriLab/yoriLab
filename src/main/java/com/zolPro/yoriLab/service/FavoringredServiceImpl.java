@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Transactional
 public class FavoringredServiceImpl {
@@ -17,16 +21,33 @@ public class FavoringredServiceImpl {
         this.jpaFavorIngredRepository = jpaFavorIngredRepository;
     }
 
-    public void insert(favoringredList ingredList) {
-        System.out.println("id = " + ingredList.getEmailID());
-        System.out.println("size = " + jpaFavorIngredRepository.findMember(ingredList.getEmailID()).size());
-        if(jpaFavorIngredRepository.findMember(ingredList.getEmailID()).size() == 0) {
-            jpaFavorIngredRepository.saveingredList(ingredList);
-        }else {
-            jpaFavorIngredRepository.updateingredList(ingredList);
+    public void insert(Member member,String[] ingredArray) {
+        System.out.println("id = " + member.getId());
+        jpaFavorIngredRepository.saveingredList(member.getId(),ingredArray);
+
+    }
+
+    public List<Object[]> selectByID(Long id) {
+        List<Object[]> list = jpaFavorIngredRepository.findIngredListByUserID(id);
+
+        for(Object[] i : list) {
+            System.out.println("num: "+i[1]);
         }
 
 
+
+        return list;
     }
+
+    public String getingredName(BigInteger id) {
+    List<Object[]> list = jpaFavorIngredRepository.findIngredNameByingreID(id);
+
+
+
+
+
+        return (String)(list.get(0)[2]);
+    }
+
 
 }
