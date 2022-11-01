@@ -21,8 +21,12 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
 //    @Query(value = "SELECT f from Food f join fetch f.ingredientAmountList ia join fetch  ia.ingredient")
 //    List<Food> fetchIngredientOfFood(@Param("foodIdList") List<Long> foodIdList);
 
+    @Query(value = "SELECT f from Food f  where f.name in :nameList")
+    List<Food> findAllByNameList(@Param("nameList") List<String> nameList);
     
     // native query에서는 테이별명대로 - 즉, 처음 소문자
     @Query(value = "select count(*) from food", nativeQuery = true)
     Long countTotal();
+
+
 }

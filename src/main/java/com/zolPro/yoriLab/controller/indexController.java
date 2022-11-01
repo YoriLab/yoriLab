@@ -64,7 +64,6 @@ public class indexController {
     @GetMapping("/select")
     public String select(Model model,HttpSession session) {
         Member member = (Member)session.getAttribute("member");
-        System.out.println("id = " + member.getId());
         List<Object[]> ingredList = favoringredServiceImpl.selectByID(member.getId());
 
 
@@ -72,10 +71,7 @@ public class indexController {
         List<String> ingredString = new ArrayList<String>();
 
         for(Object[] obj : ingredList) {
-            System.out.println(obj[1]);
          String name = favoringredServiceImpl.getingredName((BigInteger)obj[1]);
-           System.out.println(obj[1]);
-           System.out.println(name);
            ingredString.add(name);
         }
         model.addAttribute("ingredList",ingredString);
@@ -92,11 +88,6 @@ public class indexController {
 
     @PostMapping("/join")
     public String printResult(@ModelAttribute MemberForm memberForm , Model model) {
-        System.out.println("memberForm = " + memberForm);
-
-        System.out.println(memberForm.getEmailID());
-        System.out.println(memberForm.getName());
-        System.out.println(memberForm.getPW());
 
         Member findMember;
 

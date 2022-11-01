@@ -18,7 +18,7 @@ public class UserLikeIngredient {
     Member user;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "ingredient_id")
     Ingredient ingredient;
 }

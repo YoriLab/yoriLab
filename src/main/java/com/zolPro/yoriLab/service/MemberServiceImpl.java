@@ -2,7 +2,6 @@ package com.zolPro.yoriLab.service;
 
 import com.zolPro.yoriLab.domain.Member;
 import com.zolPro.yoriLab.repository.JPAMemberRepository;
-import com.zolPro.yoriLab.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,15 +18,16 @@ public class MemberServiceImpl {
     }
 
     public void join(Member member) {
-        jpaMemberRepository.saveMember(member);
+        jpaMemberRepository.save(member);
     }
 
     public Member find(String emailID) {
-        if(jpaMemberRepository.findMember(emailID).size() == 0) {
+        Member member = jpaMemberRepository.findByEmailID(emailID);
+        if(member == null) {
 
             return null;
         }else {
-            return jpaMemberRepository.findMember(emailID).get(0);
+            return member;
         }
 
 

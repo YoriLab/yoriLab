@@ -24,6 +24,7 @@ public class JPAFavorIngredRepository {
             Long ingreId = findIngreId(ingredArray[i]);
             em.createNativeQuery("insert into user_like_ingredient(user_id, ingredient_id) values("+id+","
                     +ingreId +")").executeUpdate();
+            System.out.println("save success");
         }
 
     }

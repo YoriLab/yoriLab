@@ -1,64 +1,84 @@
 package com.zolPro.yoriLab.controller;
 
 import com.zolPro.yoriLab.domain.*;
+import com.zolPro.yoriLab.dto.RecommResponseBody;
 import com.zolPro.yoriLab.dto.RecommendationByDay;
 import com.zolPro.yoriLab.dto.RecommendationByWhen;
+import com.zolPro.yoriLab.repository.JPAMemberRepository;
 import com.zolPro.yoriLab.service.FoodService;
+import com.zolPro.yoriLab.service.OtherApiService;
+import com.zolPro.yoriLab.service.RecommService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
 public class RecommendationController {
+    private OtherApiService apiService;
+    private JPAMemberRepository memberRepository;
     private FoodService foodService;
+    private RecommService recommService;
 
     /* 추천 페이지 */
     @GetMapping("/recommendation")
-    public String recommendation(Model model, @RequestParam(value = "day", required = false, defaultValue = "7") Long day) {
+    public String recommendation(Model model, @RequestParam(value = "day", required = false, defaultValue = "1") Long day, HttpSession session) {
         List<RecommendationByDay> recommendationFullList = new ArrayList<>();
 
-        // 임시 생성
-        Random random = new Random();
+//        session
+        Member sessionMember = (Member) session.getAttribute("member");
 
-        // food table에 전체 row 수
-        Long totalCount = foodService.getTotalCount();
+        if (sessionMember != null) {
+            // 로그인한 유저
+            Member member = memberRepository.findById(sessionMember.getId()).orElse(null);
+            recommendationFullList = recommService.getRecommendation(day.intValue(), member);
+        } else {
+            // 완전 랜덤
+            // 임시 생성
+            Random random = new Random();
 
-        for (int i = 0; i < day; i++) { // 몇일차
-            RecommendationByDay recommendationByDay = new RecommendationByDay(i+1);
-            for (int j = 0; j < 3; j++) { // 아침 점심 저녁
-                RecommendationByWhen recommendationByWhen = new RecommendationByWhen(WhenToCook.values()[j]);
+            // food table에 전체 row 수
+            Long totalCount = foodService.getTotalCount();
 
-                // 랜덤한 food id list
-                List<Long> randomFoodIdList = new ArrayList<>();
-                Integer randomNum = random.nextInt(5) + 1;
-                for (int k = 0; k < randomNum; k++) {
-                    randomFoodIdList.add((long) (random.nextInt(Math.toIntExact(totalCount)) + 1));
-                }
+            for (int i = 0; i < day; i++) { // 몇일차
+                RecommendationByDay recommendationByDay = new RecommendationByDay(i + 1);
+                for (int j = 0; j < 3; j++) { // 아침 점심 저녁
+                    RecommendationByWhen recommendationByWhen = new RecommendationByWhen(WhenToCook.values()[j]);
 
-
-                // db에서 랜덤으로 food 데이터 가져오기
-//                List<Food> randomFoodList = foodService.getSomeFoodListSpecificCount(randomNum);
-                List<Food> randomFoodList = foodService.findAllByIdList(randomFoodIdList);
+                    // 랜덤한 food id list
+                    List<Long> randomFoodIdList = new ArrayList<>();
+                    Integer randomNum = random.nextInt(5) + 1;
+                    for (int k = 0; k < randomNum; k++) {
+                        randomFoodIdList.add((long) (random.nextInt(Math.toIntExact(totalCount)) + 1));
+                    }
 
 
-                // 반복문 돌며 임시 데이터 생성
-                for (int k = 0; k < randomFoodList.size(); k++) {
+                    // db에서 랜덤으로 food 데이터 가져오기
+                    List<Food> randomFoodList = foodService.findAllByIdList(randomFoodIdList);
+
+
+                    // 반복문 돌며 임시 데이터 생성
+                    for (int k = 0; k < randomFoodList.size(); k++) {
 //                    List<Ingredient> randomIngredientList = new ArrayList<>();
 //                    randomIngredientList.add(new Ingredient("랜덤 재료 " + i + j + k));
 
-                    Recommendation recommendation = new Recommendation(i + 1, WhenToCook.values()[j], new Date(),
-                            randomFoodList.get(k));
-                    recommendationByWhen.addRecomm(recommendation);
+//                    Recommendation recommendation = new Recommendation(i + 1, WhenToCook.values()[j], new Date(),
+//                            randomFoodList.get(k));
+                        Recommendation recommendation = new Recommendation(
+                                randomFoodList.get(k));
+
+                        recommendationByWhen.addRecomm(recommendation);
+                    }
+                    recommendationByDay.addRecommByWhen(recommendationByWhen);
                 }
-                recommendationByDay.addRecommByWhen(recommendationByWhen);
+                recommendationFullList.add(recommendationByDay);
             }
-            recommendationFullList.add(recommendationByDay);
         }
 
 
