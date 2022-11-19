@@ -2,12 +2,9 @@ package com.zolPro.yoriLab.controller;
 
 import com.zolPro.yoriLab.domain.*;
 import com.zolPro.yoriLab.dto.MemberForm;
-import com.zolPro.yoriLab.dto.RecommendationByDay;
-import com.zolPro.yoriLab.dto.RecommendationByWhen;
 import com.zolPro.yoriLab.service.FavoringredServiceImpl;
 import com.zolPro.yoriLab.service.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,17 +12,17 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 @Controller
-
 public class indexController {
+
     @Autowired
     MemberServiceImpl memberServiceImpl;
     @Autowired
     FavoringredServiceImpl favoringredServiceImpl;
+
+
     /* 인덱스 페이지 */
     @GetMapping("/")
     public String index(Model model,HttpSession session) {
@@ -42,19 +39,6 @@ public class indexController {
         return "Signup";
     }
 
-//    /* 영수증 페이지 */
-//    @GetMapping("/receipt")
-//    public String receipt(Model model) {
-//        // 변경 예정
-//        return "/";
-//    }
-//
-//    /* 레시피 상세 페이지 */
-//    @GetMapping("/recipe-detail")
-//    public String recipeDetail(Model model) {
-//        // 변경 예정
-//        return "/";
-//    }
 
     @GetMapping("/recipeView")
     public String recipeRecommend(Model model) {

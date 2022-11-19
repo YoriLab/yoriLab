@@ -23,10 +23,6 @@ public class FavoringredServiceImpl {
     private JPAMemberRepository memberRepository;
     private OtherApiService apiService;
 
-//    @Autowired
-//    public FavoringredServiceImpl(JPAFavorIngredRepository jpaFavorIngredRepository) {
-//        this.jpaFavorIngredRepository = jpaFavorIngredRepository;
-//    }
 
     public void insert(Member smember,String[] ingredArray) {
         jpaFavorIngredRepository.saveingredList(smember.getId(),ingredArray);
