@@ -21,19 +21,23 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class OtherApiService {
-    private final String API_URL = "http://127.0.0.1:8000";
+    private final String API_URL = "http://127.0.0.1:642";
     private RestTemplate restTemplate;
 
 
     public ClusterResponseBody fetchCluster(List<String> likeStr) {
-        restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        factory.setConnectTimeout(10*1000);
+        factory.setReadTimeout(30*1000);
+
+        restTemplate = new RestTemplate(factory);
 
         ClusterRequestBody requestBody = new ClusterRequestBody(likeStr);
 
         HttpHeaders headers=new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<ClusterRequestBody> entity=new HttpEntity<ClusterRequestBody>(requestBody, headers);
+        HttpEntity<ClusterRequestBody> entity= new HttpEntity<>(requestBody, headers);
 
         ClusterResponseBody body = restTemplate.postForObject(API_URL + "/users/cluster", entity, ClusterResponseBody.class);
         System.out.println("body = " + body);
@@ -55,9 +59,9 @@ public class OtherApiService {
                 .build();
 
         HttpHeaders headers=new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<RecommRequestBody> entity=new HttpEntity<RecommRequestBody>(requestBody, headers);
+        HttpEntity<RecommRequestBody> entity= new HttpEntity<>(requestBody, headers);
 
         RecommResponseBody body = restTemplate.postForObject(API_URL + "/users/recomm", entity, RecommResponseBody.class);
         System.out.println("body = " + body);
