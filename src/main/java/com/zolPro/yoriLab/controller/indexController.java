@@ -130,4 +130,26 @@ public class indexController {
         favoringredServiceImpl.insert(member,splitArray);
         return "mainPage";
     }
+    @PostMapping("/cancel")
+    public String cancelFavorIngred(@RequestParam String cancelIngred, HttpSession session,Model model){
+        Member member = (Member)session.getAttribute("member");
+        System.out.println("cancelIngred : " + cancelIngred);
+
+        String splitArray[] = cancelIngred.split(" ");
+        System.out.println("cancelIngred : " + splitArray.length);
+        System.out.println("id : " + member.getId());
+        favoringredServiceImpl.cancel(member,splitArray);
+        List<Object[]> ingredList = favoringredServiceImpl.selectByID(member.getId());
+
+        List<String> ingredString = new ArrayList<String>();
+
+        for(Object[] obj : ingredList) {
+            String name = favoringredServiceImpl.getingredName((BigInteger)obj[1]);
+            ingredString.add(name);
+        }
+        model.addAttribute("ingredList",ingredString);
+        return "selectIngred";
+
+    }
+
 }

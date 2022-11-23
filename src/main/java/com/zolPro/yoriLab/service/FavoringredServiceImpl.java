@@ -41,6 +41,23 @@ public class FavoringredServiceImpl {
         member.setSoupCluster(soupCluster);
     }
 
+    public void cancel(Member smember,String[] ingredArray) {
+        jpaFavorIngredRepository.deleteingredList(smember.getId(),ingredArray);
+
+        /*Member member = memberRepository.findByEmailID(smember.getEmailID());
+        List<UserLikeIngredient> likes = member.getLikes();
+        List<String> likeStr = new ArrayList<>();
+        for (UserLikeIngredient like : likes) {
+            likeStr.add(like.getIngredient().getName());
+        }
+        System.out.println("len: " + likeStr.size());
+        ClusterResponseBody clusterResponseBody = apiService.fetchCluster(likeStr);
+        int dishCluster = clusterResponseBody.getDishCluster();
+        int soupCluster = clusterResponseBody.getSoupCluster();
+        member.setDishCluster(dishCluster);
+        member.setSoupCluster(soupCluster);*/
+    }
+
     public List<Object[]> selectByID(Long id) {
         List<Object[]> list = jpaFavorIngredRepository.findIngredListByUserID(id);
 

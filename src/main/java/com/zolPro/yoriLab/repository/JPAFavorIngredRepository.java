@@ -28,6 +28,16 @@ public class JPAFavorIngredRepository {
         }
 
     }
+    public void deleteingredList(Long id, String[] ingredArray){
+        for(int i = 0; i < ingredArray.length; i++) {
+            System.out.println("success");
+            Long ingreId = findIngreId(ingredArray[i]);
+            em.createNativeQuery("delete from user_like_ingredient where user_id = "+id+" and ingredient_id = "
+                    +ingreId +"").executeUpdate();
+            System.out.println("delete success");
+        }
+
+    }
     public void updateingredList(favoringredList ingredList){
         em.createNativeQuery("update favoringred_list set emailID = " + "'" + ingredList.getEmailID() + "'," + "ingred = "+
                 ingredList.getIngred()).executeUpdate();
@@ -39,12 +49,19 @@ public class JPAFavorIngredRepository {
     }
 
     public Long findIngreId(String ingred) {
+        System.out.println("find Ingred : " + ingred);
         List<Object[]> resultList = em.createNativeQuery("select * from ingredient where name = " + "'" + ingred + "'"
         ).getResultList();
         String id = "";
+        System.out.println("return list size : " + resultList.size());
 
+        System.out.println(resultList.get(0));
+        System.out.println("object get success : " + resultList.size());
+        System.out.println(id);
         id += (resultList.get(0))[0];
         System.out.println(id);
+
+        System.out.println("execute success : " + resultList.size());
         return Long.parseLong(id);
     }
 
