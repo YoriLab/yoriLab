@@ -2,8 +2,11 @@ package com.zolPro.yoriLab.controller;
 
 import com.zolPro.yoriLab.domain.*;
 import com.zolPro.yoriLab.dto.MemberForm;
+import com.zolPro.yoriLab.dto.RecommendationByDay;
 import com.zolPro.yoriLab.service.FavoringredServiceImpl;
 import com.zolPro.yoriLab.service.MemberServiceImpl;
+import com.zolPro.yoriLab.service.RecommService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +16,10 @@ import javax.servlet.http.HttpSession;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
+@AllArgsConstructor
 public class indexController {
 
     @Autowired
@@ -22,7 +27,7 @@ public class indexController {
     @Autowired
     FavoringredServiceImpl favoringredServiceImpl;
 
-
+    private RecommService recommService;
     /* 인덱스 페이지 */
     @GetMapping("/")
     public String index(Model model,HttpSession session) {
@@ -120,15 +125,34 @@ public class indexController {
         return "mainPage";
     }
     @PostMapping("/select")
-    public String selectFavorIngred(@RequestParam String ingred, HttpSession session){
+    public String selectFavorIngred(@RequestParam String ingred,@RequestParam(value = "day", required = false, defaultValue = "1") Long day,Model model, HttpSession session){
         Member member = (Member)session.getAttribute("member");
         System.out.println("ingred : " + ingred);
-
         String splitArray[] = ingred.split(" ");
         System.out.println("ingred : " + splitArray.length);
         System.out.println("id : " + member.getId());
         favoringredServiceImpl.insert(member,splitArray);
-        return "mainPage";
+
+        List<RecommendationByDay> recommendationFullList = new ArrayList<>();
+
+//        session
+        Member sessionMember = (Member) session.getAttribute("member");
+
+        recommendationFullList = recommService.getRecommendationByDays(day, sessionMember);
+
+        // 레시피 일차별 출력 위한 변수
+        model.addAttribute("recommendationFullList", recommendationFullList);
+
+
+        Map<String, String> allIngredientList = recommService.getAllIngredientList(recommendationFullList);
+
+        model.addAttribute("allIngredientList", allIngredientList);
+
+        // 일 수 전달
+        model.addAttribute("day", day);
+        return "contents/recommendation";
+
+
     }
     @PostMapping("/cancel")
     public String cancelFavorIngred(@RequestParam String cancelIngred, HttpSession session,Model model){

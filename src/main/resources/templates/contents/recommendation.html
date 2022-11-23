@@ -10,7 +10,7 @@
                 <p>메뉴 고민 그만 해요</p>
                 <p>저희가 추천해줄게요</p>
             </div>
-
+            <button id = "returnHome" class="btn btn-lg btn-success">메인 페이지로</button>
             <!-- 일 수 선택 -->
             <div class="d-flex flex-row align-items-center justify-content-center my-4">
                 <div class="fw-semibold me-5">일 수 선택</div>
@@ -24,7 +24,7 @@
                     <div class="d-flex align-items-center">
                         <div class="fw-semibold"
                                 th:text="${recommByDay.day} + '일차 추천 요리'"></div>
-                        <button type="button" class="select-btn btn btn-sm btn-outline-secondary ms-2">선택하기</button>
+
                     </div>
                     <!-- n일차 추천 요리 (시간별) -->
                     <div>
@@ -127,8 +127,8 @@
         location.href = `/recommendation?day=${val}`;
     });
 
-    $(".select-btn").click(function() {
-        location.href = "/recipeView";
+    $("#returnHome").click(function() {
+        location.href = "/main";
     });
 
     function onClickRecipe(recipe) {

@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class OtherApiService {
-    private final String API_URL = "http://127.0.0.1:642";
+    private final String API_URL = "http://127.0.0.1:8000";
     private RestTemplate restTemplate;
 
 
