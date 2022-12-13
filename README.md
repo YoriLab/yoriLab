@@ -6,4 +6,6 @@ AI web for recommending meals
 
 ## execution
 cd build/libs
+
+
 java -jar yoriLab-0.0.1-SNAPSHOT.jar
